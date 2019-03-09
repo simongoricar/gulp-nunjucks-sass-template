@@ -1,0 +1,13 @@
+/*
+From https://gist.github.com/eduardoboucas/84144cd85cbd2ad4db1ca8b902585ca0
+ */
+@function im-to-em($breakpoints, $base-value: 16px) {
+  $new-breakpoints: ();
+
+  @each $name, $value in $breakpoints {
+    $em-value: ($value / $base-value) * 1em;
+    $new-breakpoints: map-merge($new-breakpoints, ($name: $em-value));
+  }
+
+  @return $new-breakpoints;
+}

@@ -1,0 +1,27 @@
+/* Variables
+ * ===============
+ *
+ * All variables and most of the configuration is defined on this page. */
+
+/*
+ * Breakpoints
+ * Example: @include media('<phone') { font-size: 20px }
+ */
+$breakpoints: im-to-em((
+  small-phone: 420px,
+  phone: 768px,
+  desktop: 1024px
+));
+
+$base : #F7F6F0;
+$darken : darken(#F7F6F0 , 30%);
+$back: darken(#F7F6F0, 40%);
+
+// Main colors
+$color-primary: #FF9800;
+$color-secondary: #FB8C00;
+$color-accent: #F44336;
+
+// Calculated from the main three colors
+$color-primary-light: lighten($color-primary, 13);
+$color-secondary-dark: darken($color-secondary, 13);
