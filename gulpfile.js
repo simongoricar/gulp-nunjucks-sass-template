@@ -176,21 +176,23 @@ function watchOther() {
 /*
  * EXPORTED TASKS
  */
-exports.build = gulp.series(
-  cleanDist,
-  gulp.parallel(css, jsMain, jsExternal, html, copyOther, images),
-  gulp.parallel(
-    gulp.parallel(
-      watchCss, watchJsMain, watchJsExternal, watchHtml, watchOther
-    ),
-    initBrowserSync));
-exports.js = gulp.parallel(jsMain, jsExternal);
 exports.css = css;
+exports.js = gulp.parallel(jsMain, jsExternal);
 exports.html = html;
 exports.images = images;
 exports.other = copyOther;
 
+exports.build = gulp.parallel(css, jsMain, jsExternal, html, images, copyOther);
+
+exports.watch = gulp.parallel(watchCss, watchJsMain, watchJsExternal, watchHtml, watchOther);
 exports.clean = cleanDist;
 exports.reload = browserSyncReload;
 
-exports.default = exports.build;
+exports.default = gulp.series(
+  exports.clean,
+  exports.build,
+  gulp.parallel(
+    exports.watch,
+    initBrowserSync
+  )
+);
