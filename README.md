@@ -20,9 +20,8 @@ For further help, see [this help article](https://help.github.com/en/articles/cl
 ##### Forking
 Forking makes an online copy of this repository which is then available under your repositories. Click the *Fork* button or see help [here](https://help.github.com/en/articles/fork-a-repo).
 
-Once you have the repository downloaded, execute `npm install` in the base directory and you're done. Optionally, you can customize `gulpfile.js` if you have a specific need.
-
 ### Usage
+Once you have the repository downloaded, execute `npm install` in the base directory and you're done. Optionally, you can customize `gulpfile.js` if you have a specific need.
 
 The file structure is as follows:
 
