@@ -1,13 +1,13 @@
 {
-  "name": "4g-maturantski-video",
-  "title": "Maturantski video 4.G gimnazije Ledina (2018/19)",
-  "author": "Simon Goricar",
+  "name": "gulp-nunjucks-sass-template",
+  "title": "A Gulp 4 template including SCSS, Nunjucks, JS and more",
+  "author": "Simon Goričar",
   "url": "https://github.com/DefaultSimon",
-  "version": "1.0.5",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/DefaultSimon/4g-graduation-video"
+    "url": "http://github.com/DefaultSimon/gulp-nunjucks-sass-template"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
@@ -19,6 +19,7 @@
     "gulp-imagemin": "^5.0.3",
     "gulp-jshint": "^2.1.0",
     "gulp-nunjucks-render": "^2.2.2",
+    "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",

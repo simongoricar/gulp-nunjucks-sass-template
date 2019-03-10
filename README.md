@@ -1,27 +1,50 @@
-# Gulp 4 template including SCSS, JS and Nunjucks
+# A [Gulp 4](https://gulpjs.com/) template including [SCSS](https://sass-lang.com/), [Nunjucks](https://mozilla.github.io/nunjucks/), [JS](https://www.javascript.com/) and more
 
-Template is based on the [FastShell](https://hosseinkarami.com/fastshell/) boilerplate.
+### Full list of features:
+- [SCSS](https://sass-lang.com/) compilation (including copying external stylesheets/libraries), minification, auto-prefixing and all that sweet stuff
+- [Nunjucks](https://mozilla.github.io/nunjucks/) template rendering
+- [Javascript](https://www.javascript.com/) with [jshint](https://jshint.com/docs/) and minification
+- Automatically includes "headers" at the beginning of files with information about the author and the project
+- Easy src/build path customization in gulpfile.js
+- Image optimization with `imagemin`
+- Browser-sync support (updates changes in your browser in real-time)
 
-## License
 
-#### The MIT License (MIT)
+### Installation
+To get started, first clone (recommended), fork or download the repository.
 
-Copyright (c) Simon Goricar (modified by) & FastShell
+##### Cloning or downloading
+In order to clone this repository, execute `git clone https://github.com/DefaultSimon/gulp-nunjucks-sass-template.git` in your console (alternatively, use the download button to download a zipped version).
+For further help, see [this help article](https://help.github.com/en/articles/cloning-a-repository).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
+##### Forking
+Forking makes an online copy of this repository which is then available under your repositories. Click the *Fork* button or see help [here](https://help.github.com/en/articles/fork-a-repo).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Once you have the repository downloaded, execute `npm install` in the base directory and you're done. Optionally, you can customize `gulpfile.js` if you have a specific need.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### Usage
+
+The file structure is as follows:
+
+```
+src
+- pages
+  > your Nunjucks pages (.njk) are here
+- templates
+  > Nunjucks templates should be put here
+  
+- scss
+  > SCSS files (main.scss should import all other files)
+- js
+  > all *.js files in here are concatenated into scripts.js
+  - external
+    > this folder is meant for libraries and is simply copied
+- img
+  > images here are optimized and copied
+- other
+  > *any* files are recursively copied to the build directory
+  > useful for cases where you need some custom data
+```
+
+To start gulp, execute `gulp` in the console. This will build the project, open the browser and watch for changes.
+

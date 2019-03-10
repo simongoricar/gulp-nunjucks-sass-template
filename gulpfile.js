@@ -7,6 +7,7 @@ const gulp = require('gulp'),
       jshint = require('gulp-jshint'),
       header  = require('gulp-header'),
       rename = require('gulp-rename'),
+      concat = require('gulp-concat'),
       cssnano = require('gulp-cssnano'),
       sourcemaps = require('gulp-sourcemaps'),
       nunjucksRender = require('gulp-nunjucks-render'),
@@ -18,9 +19,9 @@ const banner = [
   '/*!',
   ` * ${pkg.name}`,
   ` * ${pkg.title}`,
-  ` * ${pkg.url}`,
-  ` * @author ${pkg.author}`,
-  ` * @version ${pkg.version}`,
+  " *",
+  ` * Url: ${pkg.url}`,
+  ` * Author: ${pkg.author}`,
   ` * Copyright 2019-${new Date().getFullYear()}. ${pkg.license} licensed.`,
   ' */',
   '',
@@ -28,6 +29,7 @@ const banner = [
 
 /*
  * CONFIGURATION
+ * If you want to build files to a different directory simply modify the configuration below!
  */
 const srcBase = "src/",
       destBase = "build/";
@@ -85,7 +87,7 @@ function css() {
 
 function jsMain() {
   return gulp.src(paths.js.srcMain, {since: gulp.lastRun(jsMain)})
-    .pipe(rename("scripts.js"))
+    .pipe(concat("scripts.js"))
     .pipe(sourcemaps.init())
     // Check against .jshintrc rules
     .pipe(jshint(".jshintrc"))
