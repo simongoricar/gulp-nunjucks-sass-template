@@ -1,28 +1,16 @@
-# FastShell
-# https://HosseinKarami.github.io/fastshell
-# @author Hossein Karami
-
-
-## Node.js
-lib-cov
-*.seed
-*.csv
-*.dat
-*.out
-*.pid
-pids
-logs
-results
+# Node.js
 npm-debug.log
 node_modules
 
-## Bower
-src/components
+# Intellij
+.idea
 
-## Sass
-.sass-cache
+# Ignore builds
+build
 
-## OS X
+
+## Platform-specific
+# OS X
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -31,12 +19,8 @@ Icon
 .Spotlight-V100
 .Trashes
 
-## Windows
+# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
-
-# Intellij and custom ignroes
-.idea
-build

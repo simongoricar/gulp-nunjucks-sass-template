@@ -13,7 +13,7 @@
   "newcap": true,
   "noarg": true,
   "quotmark": false,
-  "regexp": true,
+  "regexpu": true,
   "undef": true,
   "unused": false,
   "strict": false,

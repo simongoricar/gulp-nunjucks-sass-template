@@ -1,19 +1,19 @@
 const gulp = require('gulp'),
-      gutil = require('gulp-util'),
-      sass = require('gulp-sass'),
-      browserSync = require('browser-sync'),
-      autoprefixer = require('gulp-autoprefixer'),
-      uglify = require('gulp-uglify'),
-      jshint = require('gulp-jshint'),
-      header  = require('gulp-header'),
-      rename = require('gulp-rename'),
-      concat = require('gulp-concat'),
-      cssnano = require('gulp-cssnano'),
-      sourcemaps = require('gulp-sourcemaps'),
-      nunjucksRender = require('gulp-nunjucks-render'),
-      del = require('del'),
-      imagemin = require("gulp-imagemin"),
-      pkg = require('./package.json');
+  gutil = require('gulp-util'),
+  sass = require('gulp-sass'),
+  browserSync = require('browser-sync'),
+  autoprefixer = require('gulp-autoprefixer'),
+  uglify = require('gulp-uglify'),
+  jshint = require('gulp-jshint'),
+  header = require('gulp-header'),
+  rename = require('gulp-rename'),
+  concat = require('gulp-concat'),
+  cssnano = require('gulp-cssnano'),
+  sourcemaps = require('gulp-sourcemaps'),
+  nunjucksRender = require('gulp-nunjucks-render'),
+  del = require('del'),
+  imagemin = require("gulp-imagemin"),
+  pkg = require('./package.json');
 
 const banner = [
   '/*!',
@@ -32,7 +32,7 @@ const banner = [
  * If you want to build files to a different directory simply modify the configuration below!
  */
 const srcBase = "src/",
-      destBase = "build/";
+  destBase = "build/";
 const paths = {
   // html is in build/*
   html: {
@@ -97,20 +97,22 @@ function jsMain() {
     .pipe(gulp.dest(paths.js.dest))
     // minify js and log errors
     .pipe(uglify())
-    .on("error", function(err) { gutil.log(gutil.colors.red("[Error]]"), err.toString()); })
+    .on("error", function (err) {
+      gutil.log(gutil.colors.red("[Error]]"), err.toString());
+    })
     .pipe(header(banner))
-    .pipe(rename({ suffix: ".min" }))
+    .pipe(rename({suffix: ".min"}))
     .pipe(sourcemaps.write())
     // Write the minified file
     .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.reload({ stream: true, once: true }));
+    .pipe(browserSync.reload({stream: true, once: true}));
 }
 
 function jsExternal() {
   // Just copy the external js files
   return gulp.src(paths.js.srcExternal, {since: gulp.lastRun(jsExternal)})
     .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.reload({ stream: true, once: true }));
+    .pipe(browserSync.reload({stream: true, once: true}));
 }
 
 function html() {
@@ -133,7 +135,7 @@ function copyOther() {
 
 function images() {
   return gulp.src(paths.img.src)
-    .pipe(imagemin({ verbose: true }))
+    .pipe(imagemin({verbose: true}))
     .pipe(gulp.dest(paths.img.dest));
 }
 
@@ -162,15 +164,19 @@ function browserSyncReload() {
 function watchCss() {
   return gulp.watch(`${srcBase}scss/**/*.scss`, css);
 }
+
 function watchJsMain() {
   return gulp.watch(`${srcBase}js/*.js`, jsMain);
 }
+
 function watchJsExternal() {
   return gulp.watch(`${srcBase}js/external/*.js`, jsExternal);
 }
+
 function watchHtml() {
   return gulp.watch([`${srcBase}pages/**/*.njk`, `${srcBase}templates/**/*.njk`], html);
 }
+
 function watchOther() {
   return gulp.watch(`${srcBase}other/**/*`, copyOther);
 }
