@@ -12,16 +12,21 @@
 //----------------------------------*/
 
 // Config modules
-@import 'base/_vars.scss';
+@import "base/_vars.scss";
 
-@import 'modules/_clearfix.scss';
-@import 'modules/_defaults.scss';
-@import 'modules/_normalize.scss';
-@import 'modules/_misc.scss';
-@import 'modules/_typography.scss';
-
-// Enhancement modules
-@import 'modules/_print.scss';
+// Common animations
+@import "modules/_animations.scss";
+@import "modules/_clearfix.scss";
+// Other resets
+@import "modules/_defaults.scss";
+// Misc, selection
+@import "modules/_misc.scss";
+// normalize.css
+@import "modules/_normalize.scss";
+// Formatting for print
+@import "modules/_print.scss";
+// Fonts
+@import "modules/_typography.scss";
 
 //----------------------------------*\
 // LAYOUT

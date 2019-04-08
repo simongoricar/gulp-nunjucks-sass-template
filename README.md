@@ -41,7 +41,7 @@ src
 - img
   > images here are optimized and copied
 - other
-  > *any* files are recursively copied to the build directory
+  > *any* files are recursively copied to the 'assets' directory
   > useful for cases where you need some custom data
 ```
 

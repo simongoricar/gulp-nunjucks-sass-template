@@ -1,9 +1,15 @@
 const gulp = require('gulp'),
-  gutil = require('gulp-util'),
+  fLog = require('fancy-log'),
+  ansicolors = require('ansi-colors'),
   sass = require('gulp-sass'),
-  browserSync = require('browser-sync'),
+  browserSync = require('browser-sync').create(),
   autoprefixer = require('gulp-autoprefixer'),
-  uglify = require('gulp-uglify'),
+
+  // gulp-uglify with uglify-es for ES6+ support
+  uglifyEs = require('uglify-es'),
+  composer = require('gulp-uglify/composer'),
+  uglify = composer(uglifyEs, console),
+
   jshint = require('gulp-jshint'),
   header = require('gulp-header'),
   rename = require('gulp-rename'),
@@ -14,6 +20,7 @@ const gulp = require('gulp'),
   del = require('del'),
   imagemin = require("gulp-imagemin"),
   pkg = require('./package.json');
+
 
 const banner = [
   '/*!',
@@ -36,7 +43,7 @@ const srcBase = "src/",
 const paths = {
   // html is in build/*
   html: {
-    src: srcBase + "pages/*.njk",
+    src: srcBase + "pages/**/*.njk",
     templatesSrc: srcBase + "templates/",
     dest: destBase,
   },
@@ -53,7 +60,7 @@ const paths = {
   },
   // images are in build/assets/img/*
   img: {
-    src: srcBase + "img/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
+    src: srcBase + "img/**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
     dest: destBase + "assets/img/"
   },
   // other files are copied recursively to build/assets/
@@ -67,7 +74,7 @@ const paths = {
  * SCSS, JS and HTML preprocessing
  */
 function css() {
-  return gulp.src(paths.stylesheets.src, {since: gulp.lastRun(css)})
+  return gulp.src(paths.stylesheets.src)
     .pipe(rename("style.css"))
     .pipe(sourcemaps.init())
     // Compile scss and prefix
@@ -81,8 +88,7 @@ function css() {
     .pipe(header(banner))
     .pipe(sourcemaps.write())
     // Write the minified file
-    .pipe(gulp.dest(paths.stylesheets.dest))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(gulp.dest(paths.stylesheets.dest));
 }
 
 function jsMain() {
@@ -98,21 +104,19 @@ function jsMain() {
     // minify js and log errors
     .pipe(uglify())
     .on("error", function (err) {
-      gutil.log(gutil.colors.red("[Error]]"), err.toString());
+      fLog(ansicolors.red("[Error]]"), err.toString());
     })
     .pipe(header(banner))
     .pipe(rename({suffix: ".min"}))
     .pipe(sourcemaps.write())
     // Write the minified file
-    .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.reload({stream: true, once: true}));
+    .pipe(gulp.dest(paths.js.dest));
 }
 
 function jsExternal() {
   // Just copy the external js files
   return gulp.src(paths.js.srcExternal, {since: gulp.lastRun(jsExternal)})
-    .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.reload({stream: true, once: true}));
+    .pipe(gulp.dest(paths.js.dest));
 }
 
 function html() {
@@ -147,15 +151,18 @@ function cleanDist() {
  * BROWSER SYNC
  */
 function initBrowserSync() {
-  browserSync.init(null, {
+  browserSync.init({
     server: {
       baseDir: destBase
-    }
+    },
+    reloadDelay: 350,
+    files: [`${destBase}/**/*.*`]
   });
 }
 
-function browserSyncReload() {
-  browserSync.reload();
+function reload(done) {
+  browserSync.reload({ stream: false });
+  done();
 }
 
 /*
@@ -194,7 +201,7 @@ exports.build = gulp.parallel(css, jsMain, jsExternal, html, images, copyOther);
 
 exports.watch = gulp.parallel(watchCss, watchJsMain, watchJsExternal, watchHtml, watchOther);
 exports.clean = cleanDist;
-exports.reload = browserSyncReload;
+exports.reload = reload;
 
 exports.default = gulp.series(
   exports.clean,

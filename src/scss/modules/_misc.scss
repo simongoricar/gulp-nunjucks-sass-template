@@ -1,15 +1,17 @@
+$select-bg: transparentize(lighten($color-primary, 10), 0.5);
+
 ::selection{
-  background: #333;
+  background: $select-bg;
   color: #fff;
   text-shadow: none;
 }
 ::-moz-selection{
-  background: #333;
+  background: $select-bg;
   color: #fff;
   text-shadow: none;
 }
 ::-webkit-selection{
-  background: #333;
+  background: $select-bg;
   color: #fff;
   text-shadow: none;
 }

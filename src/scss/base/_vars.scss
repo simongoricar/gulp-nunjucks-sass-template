@@ -8,20 +8,34 @@
  * Example: @include media('<phone') { font-size: 20px }
  */
 $breakpoints: im-to-em((
-  small-phone: 420px,
+  small-phone: 410px,
   phone: 768px,
-  desktop: 1024px
+  desktop: 1024px,
+  large-desktop: 1700px
 ));
 
-$base : #F7F6F0;
-$darken : darken(#F7F6F0 , 30%);
-$back: darken(#F7F6F0, 40%);
+/*
+ * COLORS
+ */
+// Base
+$color-white: #fafafa;
+$color-white-dark: darken($color-white, 25%);
+$color-white-dark2: darken($color-white, 40%);
 
-// Main colors
-$color-primary: #FF9800;
-$color-secondary: #FB8C00;
-$color-accent: #F44336;
+// Primary
+$color-primary: #00897b;
+$color-primary-light: lighten($color-primary, 15);
+$color-primary-dark: #00564d;
 
-// Calculated from the main three colors
-$color-primary-light: lighten($color-primary, 13);
-$color-secondary-dark: darken($color-secondary, 13);
+// Secondary
+$color-secondary: #282828;
+$color-secondary-lighter: #363636;
+$color-secondary-lightest: #969696;
+
+$color-red: #D32F2F;
+
+/*
+ * FONT STACKS
+ */
+$font-family-primary: Montserrat, Helvetica, sans-serif;
+$font-family-secondary: "LatoWeb", Arial, sans-serif;
