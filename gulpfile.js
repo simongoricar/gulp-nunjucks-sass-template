@@ -53,6 +53,7 @@ const paths = {
     dest: destBase + "assets/css/",
   },
   // js is in build/assets/js/*
+  // external js is in build/assets/js/external/**/*.js
   js: {
     srcMain: srcBase + "js/*.js",
     srcExternal: srcBase + "js/external/**/*.js",
@@ -68,6 +69,13 @@ const paths = {
     src: srcBase + "other/**/*",
     dest: destBase + "assets/"
   }
+};
+
+const customNunjucksEnv = {
+  // functions that process the passed arguments
+  filters: {},
+  // globals can be either variables or functions
+  globals: {}
 };
 
 /*
@@ -120,11 +128,24 @@ function jsExternal() {
 }
 
 function html() {
+  // TODO test
+  const manageEnvFn = function(env) {
+    // Add filters
+    for (let [key, value] of Object.entries(customNunjucksEnv.filters)) {
+      env.addFilter(key, value);
+    }
+    // Add globals
+    for (let [key, value] of Object.entries(customNunjucksEnv.globals)) {
+      env.addGlobal(key, value);
+    }
+  };
+
   return gulp.src(paths.html.src, {since: gulp.lastRun(html)})
     .pipe(nunjucksRender({
       ext: ".html",
       inheritExtension: false,
-      path: paths.html.templatesSrc
+      path: paths.html.templatesSrc,
+      manageEnv: manageEnvFn
     }))
     .pipe(gulp.dest(paths.html.dest));
 }
