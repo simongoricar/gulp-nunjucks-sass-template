@@ -79,7 +79,7 @@ function css() {
     .pipe(sourcemaps.init())
     // Compile scss and prefix
     .pipe(sass().on("error", sass.logError))
-    .pipe(autoprefixer({browsers: "last 4 version"}))
+    .pipe(autoprefixer())
     // Create two files: style.css and style.css.min
     .pipe(gulp.dest(paths.stylesheets.dest))
     // Compress css, etc.
