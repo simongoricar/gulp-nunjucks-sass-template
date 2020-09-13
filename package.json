@@ -29,5 +29,8 @@
     "include-media": "^1.4.9",
     "jshint": "^2.10.1",
     "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.2"
   }
 }
