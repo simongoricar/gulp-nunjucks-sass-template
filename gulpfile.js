@@ -17,6 +17,9 @@ const gulp = require('gulp'),
   cssnano = require('gulp-cssnano'),
   sourcemaps = require('gulp-sourcemaps'),
   nunjucksRender = require('gulp-nunjucks-render'),
+  data = require('gulp-data'),
+  fs = require('fs'),
+  path = require('path'),
   del = require('del'),
   imagemin = require("gulp-imagemin"),
   pkg = require('./package.json');
@@ -127,6 +130,10 @@ function jsExternal() {
     .pipe(gulp.dest(paths.js.dest));
 }
 
+function getDataForFile(file) {
+  return JSON.parse(fs.readFileSync(srcBase + '/data/' + path.basename(file.path) + '.json'));
+}
+
 function html() {
   // TODO test
   const manageEnvFn = function(env) {
@@ -141,11 +148,12 @@ function html() {
   };
 
   return gulp.src(paths.html.src, {since: gulp.lastRun(html)})
+    .pipe(data(getDataForFile))
     .pipe(nunjucksRender({
       ext: ".html",
       inheritExtension: false,
       path: paths.html.templatesSrc,
-      manageEnv: manageEnvFn
+      manageEnv: manageEnvFn,
     }))
     .pipe(gulp.dest(paths.html.dest));
 }
@@ -202,7 +210,11 @@ function watchJsExternal() {
 }
 
 function watchHtml() {
-  return gulp.watch([`${srcBase}pages/**/*.njk`, `${srcBase}templates/**/*.njk`], html);
+  return gulp.watch([`${srcBase}pages/**/*.njk`, `${srcBase}templates/**/*.njk`, `${srcBase}data/**/*.json`], html);
+}
+
+function watchData() {
+  return gulp.watch([`${srcBase}data/**/*.json`], html);
 }
 
 function watchOther() {
@@ -220,7 +232,7 @@ exports.other = copyOther;
 
 exports.build = gulp.parallel(css, jsMain, jsExternal, html, images, copyOther);
 
-exports.watch = gulp.parallel(watchCss, watchJsMain, watchJsExternal, watchHtml, watchOther);
+exports.watch = gulp.parallel(watchCss, watchJsMain, watchData, watchJsExternal, watchHtml, watchOther);
 exports.clean = cleanDist;
 exports.reload = reload;
 
