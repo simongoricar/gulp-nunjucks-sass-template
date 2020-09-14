@@ -1,1 +1,26 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    background-color: #d2d2d2;
+}
+.pricing-card {
+    padding: 10px;
+    text-align: center;
+    .card-wrapper {
+        padding: 10px;
+        background-color: #FFF;
+        min-height: 343px;
+    }
+    button {
+        background-color: #006898;
+    }
+    .card-text {
+        min-height: 72px;
+    }
+}
+.form-group  {
+    text-align: center;
+}
+.yearly-pricing-card {
+    display: none;
+}

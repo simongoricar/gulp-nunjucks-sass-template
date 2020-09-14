@@ -1,6 +1,66 @@
 {# ! No relative paths needed, all files inside templates/ are available ! #}
 
-{# {% set title = 'inline data' %} #}
+{% set monthlyPricingCards = [
+    {
+        planTitle: 'Standard',
+        price: '79',
+        priceDescription: '$950 billed yearly | Save $238/year',
+        description: 'If your new to SEO or just need the basics, this plan is a great way to get started.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Medium',
+        price: '89',
+        priceDescription: '$1050 billed yearly | Save $238/year',
+        description: 'If your new to SEO or just need the basics, this plan is a great way to get started.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Large',
+        price: '99',
+        priceDescription: '$1150 billed yearly | Save $238/year',
+        description: 'Free refills.Free refills.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Premium',
+        price: '109',
+        priceDescription: '$1250 billed yearly | Save $238/year',
+        description: 'Premium all the way.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    }
+] %}
+
+{% set yearlyPricingCards = [
+    {
+        planTitle: 'Standard',
+        price: '59',
+        priceDescription: '$950 billed yearly | Save $238/year',
+        description: 'If your new to SEO or just need the basics, this plan is a great way to get started.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Medium',
+        price: '69',
+        priceDescription: '$1050 billed yearly | Save $238/year',
+        description: 'If your new to SEO or just need the basics, this plan is a great way to get started.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Large',
+        price: '79',
+        priceDescription: '$1150 billed yearly | Save $238/year',
+        description: 'Free refills.Free refills.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    },
+    {
+        planTitle: 'Premium',
+        price: '89',
+        priceDescription: '$1250 billed yearly | Save $238/year',
+        description: 'Premium all the way.',
+        link: 'https://moz.com/checkout/signup/pro/annual'
+    }
+] %}
 
 {% extends "base.njk" %}
 
@@ -8,7 +68,55 @@
 {% endblock %}
 
 {% block main %}
+<div class="container">
+    <fieldset class="form-group form-inline-group" data-default="monthly">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label"><strong><input type="radio" class="form-check-input" name="tier-type" value="monthly" checked="">Pay monthly</strong>
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <label class="form-check-label"><strong><input type="radio" class="form-check-input" name="tier-type" value="yearly">Pay yearly (Save 20%)</strong>
+            </label>
+        </div>
+    </fieldset>
+    <div class="row">
+        {% for card in monthlyPricingCards %}
+            <div class="pricing-card monthly-pricing-card col-md-3">
+                <div class="card-wrapper">
+                    <h6>{{card.planTitle}}</h6>
+                    <h2>{{card.price}}</h2>
+                    <p><em>{{card.priceDescription}}</em></p>
+                    <div class="card-body">
+                        <p class="card-text">{{card.description}}</p>
+                        <button class="btn btn-primary" href="{{card.link}}"><strong>Sign up Now!</strong></button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% for card in yearlyPricingCards %}
+            <div class="pricing-card yearly-pricing-card col-md-3">
+                <div class="card-wrapper">
+                    <h6>{{card.planTitle}}</h6>
+                    <h2>{{card.price}}</h2>
+                    <p><em>{{card.priceDescription}}</em></p>
+                    <div class="card-body">
+                        <p class="card-text">{{card.description}}</p>
+                        <button class="btn btn-primary" href="{{card.link}}"><strong>Sign up Now!</strong></button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
 
 {# include other blocks as necessary #}
+
+{# 
+1. Set up monthlyPricingCards objects
+2. Set up yearlyPricingCards objects
+3. Output both monthlyPricingCards and yearlyPricingCards, hide yearlyPricingCards by default
+JS code
+4. Determine what radio button is selected (event listener)
+5. Swap pricing cards from monthly to yearly or vise versa #}
