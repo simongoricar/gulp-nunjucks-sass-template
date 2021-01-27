@@ -28,6 +28,7 @@
     "gulp-uglify": "^3.0.2",
     "include-media": "^1.4.9",
     "jshint": "^2.10.1",
+    "nunjucks": "^3.2.2",
     "uglify-es": "^3.3.9"
   }
 }

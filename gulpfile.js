@@ -16,6 +16,7 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   cssnano = require('gulp-cssnano'),
   sourcemaps = require('gulp-sourcemaps'),
+  nunjucks = require('nunjucks'),
   nunjucksRender = require('gulp-nunjucks-render'),
   del = require('del'),
   imagemin = require("gulp-imagemin"),
@@ -128,7 +129,6 @@ function jsExternal() {
 }
 
 function html() {
-  // TODO test
   const manageEnvFn = function(env) {
     // Add filters
     for (let [key, value] of Object.entries(customNunjucksEnv.filters)) {
@@ -140,11 +140,16 @@ function html() {
     }
   };
 
-  return gulp.src(paths.html.src, {since: gulp.lastRun(html)})
+  return gulp.src(paths.html.src)
     .pipe(nunjucksRender({
       ext: ".html",
       inheritExtension: false,
-      path: paths.html.templatesSrc,
+      loaders: new nunjucks.FileSystemLoader(
+        paths.html.templatesSrc,
+        {
+          noCache: true
+        }
+        ),
       manageEnv: manageEnvFn
     }))
     .pipe(gulp.dest(paths.html.dest));
