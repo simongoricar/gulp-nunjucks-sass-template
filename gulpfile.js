@@ -1,6 +1,6 @@
 const gulp = require('gulp'),
   fLog = require('fancy-log'),
-  ansicolors = require('ansi-colors'),
+  ansiColors = require('ansi-colors'),
   sass = require('gulp-sass'),
   browserSync = require('browser-sync').create(),
   autoprefixer = require('gulp-autoprefixer'),
@@ -16,13 +16,25 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   cssnano = require('gulp-cssnano'),
   sourcemaps = require('gulp-sourcemaps'),
-  nunjucks = require('nunjucks'),
-  nunjucksRender = require('gulp-nunjucks-render'),
   del = require('del'),
   imagemin = require("gulp-imagemin"),
-  pkg = require('./package.json');
 
+  pkg = require('./package.json'),
 
+  // Nunjucks rendering libraries
+  nunjucks = require('nunjucks'),
+  nunjucksRender = require('gulp-nunjucks-render');
+
+/*
+ * Various configuration options
+ *
+ * Options like source and destination paths, nunjucks filters and globals, ... can be found in this section.
+ */
+
+/**
+* This banner is generated from the information in package.json and prepended to CSS and JS output.
+* @type {string}
+*/
 const banner = [
   '/*!',
   ` * ${pkg.name}`,
@@ -30,57 +42,76 @@ const banner = [
   " *",
   ` * Url: ${pkg.url}`,
   ` * Author: ${pkg.author}`,
-  ` * Copyright 2019-${new Date().getFullYear()}. ${pkg.license} licensed.`,
+  ` * Copyright ${new Date().getFullYear()}. License: ${pkg.license}`,
   ' */',
   '',
 ].join('\n');
 
-/*
- * CONFIGURATION
- * If you want to build files to a different directory simply modify the configuration below!
- */
 const srcBase = "src/",
-  destBase = "build/";
-const paths = {
-  // html is in build/*
-  html: {
-    src: srcBase + "pages/**/*.njk",
-    templatesSrc: srcBase + "templates/",
-    dest: destBase,
+  destBase = "build/",
+  paths = {
+    // HTML is in the root directory of "build/" by default
+    html: {
+      src: srcBase + "pages/**/*.njk",
+      templatesSrc: srcBase + "templates/",
+      dest: destBase,
+    },
+    // CSS is in build/assets/css/style[.min].css
+    stylesheets: {
+      src: srcBase + "scss/main.scss",
+      dest: destBase + "assets/css/",
+    },
+    // js is in build/assets/js/*
+    // external js is in build/assets/js/external/**/*.js
+    js: {
+      srcMain: srcBase + "js/*.js",
+      srcExternal: srcBase + "js/external/**/*.js",
+      dest: destBase + "assets/js/",
+    },
+    // images are in build/assets/img/*
+    img: {
+      src: srcBase + "img/**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
+      dest: destBase + "assets/img/"
+    },
+    // other ("data") files are copied recursively to build/assets/
+    other: {
+      src: srcBase + "other/**/*",
+      dest: destBase + "assets/"
+    }
+};
+
+const nunjucksConfiguration = {
+  // Read more: https://mozilla.github.io/nunjucks/api.html#custom-filters
+  filters: {
+    // Example: shorten(string, length) will shorten the string to num characters.
+    //  Sample usage: "{{ "Lorem ipsum dolor sir amet."|shorten(5) }}"
+    shorten: function (string, length) {
+      return string.slice(0, length);
+    }
   },
-  // css is in build/assets/css/style[.min].css
-  stylesheets: {
-    src: srcBase + "scss/main.scss",
-    dest: destBase + "assets/css/",
-  },
-  // js is in build/assets/js/*
-  // external js is in build/assets/js/external/**/*.js
-  js: {
-    srcMain: srcBase + "js/*.js",
-    srcExternal: srcBase + "js/external/**/*.js",
-    dest: destBase + "assets/js/",
-  },
-  // images are in build/assets/img/*
-  img: {
-    src: srcBase + "img/**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
-    dest: destBase + "assets/img/"
-  },
-  // other files are copied recursively to build/assets/
-  other: {
-    src: srcBase + "other/**/*",
-    dest: destBase + "assets/"
+  // Global nunjucks variables
+  globals: {
+    // Example
+    //  Will be available as a nunjucks variable: "{{ foo }}"
+    foo: "This an example using custom nunjucks globals."
   }
 };
 
-const customNunjucksEnv = {
-  // functions that process the passed arguments
-  filters: {},
-  // globals can be either variables or functions
-  globals: {}
+const manageNunjucksEnvironmentFn = function(env) {
+  // Add filters
+  for (let [key, value] of Object.entries(nunjucksConfiguration.filters)) {
+    env.addFilter(key, value);
+  }
+  // Add globals
+  for (let [key, value] of Object.entries(nunjucksConfiguration.globals)) {
+    env.addGlobal(key, value);
+  }
 };
 
 /*
- * SCSS, JS and HTML preprocessing
+ * Gulp Tasks
+ *
+ * SCSS, JS and HTML preprocessing as well as copying other assets and minifying images.
  */
 function css() {
   return gulp.src(paths.stylesheets.src)
@@ -102,18 +133,19 @@ function css() {
 
 function jsMain() {
   return gulp.src(paths.js.srcMain, {since: gulp.lastRun(jsMain)})
+    // All scripts will be concatenated into a single javascript file, enough for basic use.
     .pipe(concat("scripts.js"))
     .pipe(sourcemaps.init())
     // Check against .jshintrc rules
     .pipe(jshint(".jshintrc"))
     .pipe(jshint.reporter("default"))
-    // Create two files: scripts.js and scripts.js.min
+    // Create a normal (and later minified) version: scripts.js and scripts.js.min
     .pipe(header(banner))
     .pipe(gulp.dest(paths.js.dest))
     // minify js and log errors
     .pipe(uglify())
     .on("error", function (err) {
-      fLog(ansicolors.red("[Error]]"), err.toString());
+      fLog(ansiColors.red("[Error]"), err.toString());
     })
     .pipe(header(banner))
     .pipe(rename({suffix: ".min"}))
@@ -129,43 +161,29 @@ function jsExternal() {
 }
 
 function html() {
-  const manageEnvFn = function(env) {
-    // Add filters
-    for (let [key, value] of Object.entries(customNunjucksEnv.filters)) {
-      env.addFilter(key, value);
-    }
-    // Add globals
-    for (let [key, value] of Object.entries(customNunjucksEnv.globals)) {
-      env.addGlobal(key, value);
-    }
-  };
-
   return gulp.src(paths.html.src)
     .pipe(nunjucksRender({
       ext: ".html",
       inheritExtension: false,
       loaders: new nunjucks.FileSystemLoader(
         paths.html.templatesSrc,
-        {
-          noCache: true
-        }
+        { noCache: true }
         ),
-      manageEnv: manageEnvFn
+      manageEnv: manageNunjucksEnvironmentFn
     }))
     .pipe(gulp.dest(paths.html.dest));
 }
 
-/*
- * OTHER TASKS
- */
 function copyOther() {
   return gulp.src(paths.other.src, {since: gulp.lastRun(copyOther)})
     .pipe(gulp.dest(paths.other.dest));
 }
 
 function images() {
-  return gulp.src(paths.img.src)
-    .pipe(imagemin({verbose: true}))
+  return gulp.src(paths.img.src, {since: gulp.lastRun(images)})
+    .pipe(imagemin(
+      { verbose: true }
+      ))
     .pipe(gulp.dest(paths.img.dest));
 }
 
@@ -174,7 +192,7 @@ function cleanDist() {
 }
 
 /*
- * BROWSER SYNC
+ * BrowserSync setup
  */
 function initBrowserSync() {
   browserSync.init({
@@ -192,7 +210,7 @@ function reload(done) {
 }
 
 /*
- * WATCHERS
+ * Gulp Watches
  */
 function watchCss() {
   return gulp.watch(`${srcBase}scss/**/*.scss`, css);
