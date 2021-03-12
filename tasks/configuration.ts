@@ -45,6 +45,7 @@ const mainConfig = {
      *  outputDir: stylesheets output directory
      */
     css: {
+        srcDir: path.join(basePaths.srcDirBase, "scss"),
         srcEntry: path.join(basePaths.srcDirBase, "scss", "main.scss"),
         sourcemapsDir: "sourcemaps",
         outputDir: path.join(basePaths.outputDirBase, "assets", "css"),
@@ -56,6 +57,7 @@ const mainConfig = {
      *  outputDir: script chunks output directory
      */
     js: {
+        srcDir: path.join(basePaths.srcDirBase, "scripts"),
         srcEntry: path.join(basePaths.srcDirBase, "scripts", "index.ts"),
         outputDir: path.join(basePaths.outputDirBase, "assets", "js"),
     },

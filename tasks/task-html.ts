@@ -4,7 +4,7 @@
 import nunjucks from "nunjucks";
 // @ts-ignore
 import nunjucksRender from "gulp-nunjucks-render";
-import { src as gulpSrc, dest as gulpDest } from "gulp";
+import { src as gulpSrc, dest as gulpDest, lastRun as gulpLastRun } from "gulp";
 
 import { AsyncTask } from "async-done";
 
@@ -34,7 +34,10 @@ const nunjucksEnv = (env: unknown) => {
 };
 
 export default function html(): ReturnType<AsyncTask> {
-    return gulpSrc(`${mainConfig.html.srcPages}/*.njk`)
+    return gulpSrc(
+        `${mainConfig.html.srcPages}/*.njk`,
+        { since: gulpLastRun(html) },
+    )
         .pipe(nunjucksRender({
             ext: ".html",
             inheritExtension: false,
