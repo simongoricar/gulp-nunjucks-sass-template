@@ -1381,6 +1381,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/gulp-rename@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@types/gulp-rename@npm:2.0.0"
+  dependencies:
+    "@types/node": "*"
+    "@types/vinyl": "*"
+  checksum: 45efa7558fbff5eda2056291da4c1a18d33242eba48f001e6b7812ab1b9355396e13c2869d9a1bc8e7960ea2a1e6b2e5c949ee0b7491722ffb6146cef7963478
+  languageName: node
+  linkType: hard
+
 "@types/gulp-sass@npm:^4.0.0":
   version: 4.0.0
   resolution: "@types/gulp-sass@npm:4.0.0"
@@ -4385,6 +4395,7 @@ fsevents@~2.3.1:
     "@babel/register": ^7.13.8
     "@types/babel__core": ^7.1.12
     "@types/gulp": ^4.0.8
+    "@types/gulp-rename": ^2.0.0
     "@types/gulp-sass": ^4.0.0
     "@types/gulp-sourcemaps": ^0.0.34
     "@types/sass": ^1.16.0

@@ -20,6 +20,7 @@
     "@babel/register": "^7.13.8",
     "@types/babel__core": "^7.1.12",
     "@types/gulp": "^4.0.8",
+    "@types/gulp-rename": "^2.0.0",
     "@types/gulp-sass": "^4.0.0",
     "@types/gulp-sourcemaps": "^0.0.34",
     "@types/sass": "^1.16.0",
