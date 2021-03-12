@@ -5,10 +5,10 @@
 import gulp from "gulp";
 
 import taskScripts from "./task-scripts";
-import taskHelloWorld from "./task-helloworld";
+import taskCss from "./task-css";
 
-export const scripts = gulp.series(taskScripts);
-export const helloworld = gulp.series(taskHelloWorld);
+export const scripts = taskScripts;
+export const css = taskCss;
 
 // noinspection JSUnusedGlobalSymbols
-export default gulp.series(scripts, helloworld);
+export default gulp.series(scripts, taskCss);

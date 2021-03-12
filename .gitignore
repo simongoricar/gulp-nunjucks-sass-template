@@ -16,6 +16,7 @@ node_modules
 .idea
 
 # Project files
+dist
 build
 OLD*
 

@@ -21,10 +21,12 @@ const mainConfig = {
     /**
      * SCSS
      *  srcEntry: entry .scss file
+     *  sourcemapsDir: directory for source maps, relative to srcEntry
      *  outputDir: stylesheets output directory
      */
     css: {
         srcEntry: path.join(basePaths.srcDirBase, "scss", "main.scss"),
+        sourcemapsDir: "sourcemaps",
         outputDir: path.join(basePaths.outputDirBase, "assets", "css"),
     },
 
@@ -54,7 +56,7 @@ const mainConfig = {
     otherAssets: {
         srcDir: path.join(basePaths.srcDirBase, "other"),
         outputDir: basePaths.outputDirBase,
-    }
+    },
 };
 
 export default { ...basePaths, ...mainConfig };
