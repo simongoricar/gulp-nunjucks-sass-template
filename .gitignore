@@ -1,12 +1,23 @@
+## Tools
 # Node.js
 npm-debug.log
 node_modules
 
+# Yarn, https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # Intellij
 .idea
 
-# Ignore builds
+# Project files
 build
+OLD*
 
 
 ## Platform-specific
