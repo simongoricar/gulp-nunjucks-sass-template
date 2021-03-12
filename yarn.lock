@@ -1459,6 +1459,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nunjucks@npm:^3.1.4":
+  version: 3.1.4
+  resolution: "@types/nunjucks@npm:3.1.4"
+  checksum: c7d418a4ef85fbfce4ccb27f9e027ec81d60e6d5cc1c6fee5751fe502f700a9e57f6c7a9f5dca09f5e79808f50608f65d253efa25e983cbddc7f4cf3684f8c9b
+  languageName: node
+  linkType: hard
+
 "@types/sass@npm:^1.16.0":
   version: 1.16.0
   resolution: "@types/sass@npm:1.16.0"
@@ -1817,6 +1824,13 @@ __metadata:
   version: 4.2.2
   resolution: "@xtuc/long@npm:4.2.2"
   checksum: ec09a359f98e9f8c47bf6c965e73b520a1a65e93f1febf6472babc8b6b0b425a2084452be103da5be11aec8c502ecfa29400713d55ef774579d04f691db44a2d
+  languageName: node
+  linkType: hard
+
+"a-sync-waterfall@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "a-sync-waterfall@npm:1.0.1"
+  checksum: da11585ce7067691fa27ce2c4b731dfb632b090cfe32decb8a6f6e9b2cd6150353a5d78f1eb4555d4a9f8849eb66f443b34f3324dd0099badf208aea335be7f4
   languageName: node
   linkType: hard
 
@@ -2200,6 +2214,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"asap@npm:^2.0.3":
+  version: 2.0.6
+  resolution: "asap@npm:2.0.6"
+  checksum: 3d314f8c598b625a98347bacdba609d4c889c616ca5d8ea65acaae8050ab8b7aa6630df2cfe9856c20b260b432adf2ee7a65a1021f268ef70408c70f809e3a39
+  languageName: node
+  linkType: hard
+
 "asn1@npm:~0.2.3":
   version: 0.2.4
   resolution: "asn1@npm:0.2.4"
@@ -2237,7 +2258,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async-done@npm:^1.2.0, async-done@npm:^1.2.2, async-done@npm:~1.3.2":
+"async-done@npm:^1.2.0, async-done@npm:^1.2.2, async-done@npm:^1.3.2, async-done@npm:~1.3.2":
   version: 1.3.2
   resolution: "async-done@npm:1.3.2"
   dependencies:
@@ -2833,6 +2854,13 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
+  languageName: node
+  linkType: hard
+
+"commander@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "commander@npm:5.1.0"
+  checksum: d16141ea7f580945156fb8a06de2834c4647c7d9d3732ebd4534ab8e0b7c64747db301e18f2b840f28ea8fef51f7a8d6178e674b45a21931f0b65ff1c7f476b3
   languageName: node
   linkType: hard
 
@@ -4385,6 +4413,19 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"gulp-nunjucks-render@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "gulp-nunjucks-render@npm:2.2.3"
+  dependencies:
+    lodash: ^4.17.11
+    nunjucks: ^3.1.2
+    plugin-error: ^1.0.1
+    replace-ext: ^1.0.0
+    through2: ^2.0.3
+  checksum: 9248b65430f38640b179f83ad7cf2b04ebf0f661ac53dc09d9e80fe7edc4e14082867b6a9ca823c08df80c45badb65d5ea0aba4000317d24bb5d0f1aa2070ed0
+  languageName: node
+  linkType: hard
+
 "gulp-nunjucks-sass-template@workspace:.":
   version: 0.0.0-use.local
   resolution: "gulp-nunjucks-sass-template@workspace:."
@@ -4398,10 +4439,12 @@ fsevents@~2.3.1:
     "@types/gulp-rename": ^2.0.0
     "@types/gulp-sass": ^4.0.0
     "@types/gulp-sourcemaps": ^0.0.34
+    "@types/nunjucks": ^3.1.4
     "@types/sass": ^1.16.0
     "@types/webpack": ^4.41.26
     "@typescript-eslint/eslint-plugin": ^4.17.0
     "@typescript-eslint/parser": ^4.17.0
+    async-done: ^1.3.2
     core-js: ^3.9.1
     eslint: ^7.21.0
     eslint-config-airbnb-typescript: ^12.3.1
@@ -4410,9 +4453,11 @@ fsevents@~2.3.1:
     eslint-plugin-react: 7.20.3
     eslint-plugin-react-hooks: 4.0.8
     gulp: ^4.0.2
+    gulp-nunjucks-render: ^2.2.3
     gulp-rename: ^2.0.0
     gulp-sass: ^4.1.0
     gulp-sourcemaps: ^3.0.0
+    nunjucks: ^3.2.3
     sass: ^1.32.8
     typescript: ^4.2.3
     webpack: ^5.25.0
@@ -5938,6 +5983,24 @@ fsevents@~2.3.1:
   version: 1.0.1
   resolution: "number-is-nan@npm:1.0.1"
   checksum: 42251b2653a16f8b47639d93c3b646fff295a4582a6b3a2fc51a651d4511427c247629709063d19befbceb8a3db1a8e9f17016b3a207291e79e4bd1413032918
+  languageName: node
+  linkType: hard
+
+"nunjucks@npm:^3.1.2, nunjucks@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "nunjucks@npm:3.2.3"
+  dependencies:
+    a-sync-waterfall: ^1.0.0
+    asap: ^2.0.3
+    commander: ^5.1.0
+  peerDependencies:
+    chokidar: ^3.3.0
+  peerDependenciesMeta:
+    chokidar:
+      optional: true
+  bin:
+    nunjucks-precompile: bin/precompile
+  checksum: 5cf89eb605ee3f59d988ee8c01e180a3a909222d860e2aba42c7b69f1bda239f8a54bb4c0a60b5f0be0288eb3b7e49e0d5344cacf95d21c6d232ee921161a066
   languageName: node
   linkType: hard
 

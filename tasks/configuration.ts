@@ -5,7 +5,23 @@ const basePaths = {
     outputDirBase: path.resolve(`${__dirname}/../dist`),
 };
 
+type AnyNunjucksType = number | string;
+type NunjucksFilter = (...args: AnyNunjucksType[]) => AnyNunjucksType;
+
+const nunjucksFilters: { [name: string]: NunjucksFilter } = {
+    shorten: (...args) => {
+        const str: string = <string>args[0];
+        const length: number = <number>args[1];
+
+        return str.slice(0, length);
+    },
+};
+const nunjucksGlobals = {
+    foo: "bar",
+};
+
 const mainConfig = {
+    ...basePaths,
     /**
      * HTML
      *  srcPages: path to the directory containing nunjucks pages (*.njk)
@@ -14,8 +30,12 @@ const mainConfig = {
      */
     html: {
         srcPages: path.join(basePaths.srcDirBase, "pages"),
-        srcTemplates: path.join(basePaths.srcDirBase, "templates"),
+        srcTemplates: path.join(basePaths.srcDirBase, "pageTemplates"),
         outputDir: basePaths.outputDirBase,
+        nunjucks: {
+            filters: nunjucksFilters,
+            globals: nunjucksGlobals,
+        },
     },
 
     /**
@@ -59,4 +79,5 @@ const mainConfig = {
     },
 };
 
-export default { ...basePaths, ...mainConfig };
+export { AnyNunjucksType, NunjucksFilter };
+export default mainConfig;

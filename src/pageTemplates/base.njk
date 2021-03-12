@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="si">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link href="//www.google-analytics.com" rel="dns-prefetch">
+    <link href="//ajax.googleapis.com" rel="dns-prefetch">
+
+    <link href="assets/css/style.min.css" rel="stylesheet">
+
+    {% block headEnd %}
+    {% endblock %}
+</head>
+{# The whole body block can be overriden if needed #}
+{% block bodyOutside %}
+    <body>
+
+    {% block headerOutside %}
+    <header class="header" role="banner">
+        {% block header %}
+        {% endblock %}
+    </header>
+    {% endblock %}
+
+    {% block mainOutside %}
+    <main class="main" role="main">
+        {% block main %}
+        {% endblock %}
+    </main>
+    {% endblock %}
+
+    {% block footerOutside %}
+    <footer class="footer" role="contentinfo">
+        {% block footer %}
+        {% endblock %}
+    </footer>
+    {% endblock %}
+
+    <script src="assets/js/jquery.min.js"></script>
+    {% block afterScripts %}
+    {% endblock %}
+
+    </body>
+{% endblock %}
+</html>
