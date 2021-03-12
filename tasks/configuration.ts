@@ -1,8 +1,10 @@
 import path from "path";
 
+process.chdir(`${__dirname}/..`);
+
 const basePaths = {
-    srcDirBase: path.resolve(`${__dirname}/../src`),
-    outputDirBase: path.resolve(`${__dirname}/../dist`),
+    srcDirBase: path.resolve("./src"),
+    outputDirBase: path.resolve("./dist"),
 };
 
 type AnyNunjucksType = number | string;
