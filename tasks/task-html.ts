@@ -33,11 +33,13 @@ const nunjucksEnv = (env: unknown) => {
     );
 };
 
-export default (): ReturnType<AsyncTask> => gulpSrc(`${mainConfig.html.srcPages}/*.njk`)
-    .pipe(nunjucksRender({
-        ext: ".html",
-        inheritExtension: false,
-        loaders: nunjucksLoader,
-        manageEnv: nunjucksEnv,
-    }))
-    .pipe(gulpDest(mainConfig.html.outputDir));
+export default function html(): ReturnType<AsyncTask> {
+    return gulpSrc(`${mainConfig.html.srcPages}/*.njk`)
+        .pipe(nunjucksRender({
+            ext: ".html",
+            inheritExtension: false,
+            loaders: nunjucksLoader,
+            manageEnv: nunjucksEnv,
+        }))
+        .pipe(gulpDest(mainConfig.html.outputDir));
+}

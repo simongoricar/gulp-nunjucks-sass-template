@@ -11,13 +11,15 @@ import { AsyncTask } from "async-done";
 
 import mainConfig from "./configuration";
 
-export default (): ReturnType<AsyncTask> => gulpSrc(mainConfig.css.srcEntry)
-    .pipe(gulpRename("style.min.css"))
-    .pipe(sourcemaps.init())
-    .pipe(
-        sass(
-            { compiler: sassCompiler, outputStyle: "compressed" },
-        ).on("error", sass.logError),
-    )
-    .pipe(sourcemaps.write(mainConfig.css.sourcemapsDir))
-    .pipe(gulpDest(mainConfig.css.outputDir));
+export default function css(): ReturnType<AsyncTask> {
+    return gulpSrc(mainConfig.css.srcEntry)
+        .pipe(gulpRename("style.min.css"))
+        .pipe(sourcemaps.init())
+        .pipe(
+            sass(
+                { compiler: sassCompiler, outputStyle: "compressed" },
+            ).on("error", sass.logError),
+        )
+        .pipe(sourcemaps.write(mainConfig.css.sourcemapsDir))
+        .pipe(gulpDest(mainConfig.css.outputDir));
+}
