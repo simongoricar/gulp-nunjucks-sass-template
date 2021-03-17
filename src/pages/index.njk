@@ -2,7 +2,7 @@
 {% block title %}gulp-nunjucks-sass-template{% endblock %}
 
 {% block headEnd %}
-    {{ "assets/css/main.min.css" | cssTag | safe }}
+    {{ tags.css | safe }}
 {% endblock %}
 
 {% block bodyOutside %}
@@ -20,6 +20,6 @@
 
     {# Inserting script tags can be done manually or using: #}
     {# {{ "assets/js/main.js" | scriptTag | safe }} #}
-    {{ scripts.index | safe }}
+    {{ tags.scripts.index | safe }}
 </body>
 {% endblock %}

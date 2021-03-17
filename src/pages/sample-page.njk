@@ -2,23 +2,13 @@
 {% block title %}Sample Page | gulp-nunjucks-sass-template{% endblock %}
 
 {% block headEnd %}
-    {{ "assets/css/main.min.css" | cssTag | safe }}
+    {{ tags.css | safe }}
 {% endblock %}
 
 {% block bodyOutside %}
 <body>
-    <h1>Lorem ipsum</h1>
-    <p>
-        {# For variable and filter configuration, see "tasks/configuration.ts" #}
+    <h1>Lorem ipsum 2</h1>
 
-        {# turns into "bar" (a variable) #}
-        {{ foo }}
-
-        {# Shortens the left side to n characters (a filter) #}
-        {{ "Lorem ipsum dolor sir amet." | shorten(11) }}
-    </p>
-
-    {# Inserting script tags can be done manually or using: #}
-    {{ "assets/js/main.js" | scriptTag | safe }}
+    {{ tags.scripts.samplepage | safe }}
 </body>
 {% endblock %}

@@ -22,7 +22,10 @@ export const otherAssets = taskCopyOtherAssets;
 export const images = taskImages;
 
 export const clean = taskClean;
-export const build = gulp.parallel(scripts, css, html, otherAssets, images);
+export const build = gulp.series(
+    clean,
+    gulp.parallel(scripts, css, html, otherAssets, images),
+);
 export const watch = gulp.parallel(
     watchCss, watchHtml, watchImages,
     watchOtherAssets, watchScripts,
@@ -30,7 +33,6 @@ export const watch = gulp.parallel(
 
 // noinspection JSUnusedGlobalSymbols
 export default gulp.series(
-    clean,
     build,
     gulp.parallel(
         watch,

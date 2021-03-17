@@ -6,8 +6,8 @@ process.chdir(`${__dirname}/..`);
 
 const basePaths = {
     // Bases
-    srcDirBase: "./src",
-    outputDirBase: "./dist",
+    srcDirBase: path.join(".", "src"),
+    outputDirBase: path.join(".", "dist"),
 
     /**
      * SOURCES
@@ -44,6 +44,7 @@ const basePaths = {
     srcTSDirName: "scripts",
     srcTSEntries: {
         index: "index.ts",
+        samplepage: "samplepage.ts",
     },
 
     srcImagesDirName: "images",
@@ -85,7 +86,7 @@ const basePaths = {
     outputCssDirName: "css",
     outputCssSourcemapsDirName: "sourcemaps",
 
-    outputJsDirName: "scripts",
+    outputJsDirName: "js",
 
     outputImagesDirName: "images",
 
@@ -148,7 +149,7 @@ const mainConfig = {
         entries: Object.fromEntries(Object.entries(basePaths.srcTSEntries).map(
             (item) => [
                 item[0],
-                path.join(basePaths.srcDirBase, basePaths.srcTSDirName, item[1]),
+                `./${path.join(basePaths.srcDirBase, basePaths.srcTSDirName, item[1])}`,
             ],
         )),
         srcDir: path.join(basePaths.srcDirBase, basePaths.srcTSDirName),
@@ -180,11 +181,11 @@ nunjucksGlobals = {
     ...nunjucksGlobals,
 
     tags: {
-        css: path.join(
+        css: nunjucksFilters.cssTag([
             basePaths.outputAssetsDirName,
             basePaths.outputCssDirName,
             `${getFilepathFilenameNoExt(basePaths.srcCssEntry)}.min.css`,
-        ),
+        ].join("/")),
         // Dynamic ready script tags
         scripts: Object.fromEntries(
             Object.entries(mainConfig.js.entries).map(
