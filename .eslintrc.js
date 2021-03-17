@@ -20,6 +20,7 @@ module.exports = {
         quotes: ["error", "double"],
         "@typescript-eslint/quotes": "off",
         "@typescript-eslint/ban-ts-comment": "off",
+        "max-len": ["error", { comments: 120, code: 90 }],
     },
     overrides: [
         {

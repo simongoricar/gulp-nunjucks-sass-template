@@ -9,7 +9,7 @@ import { src as gulpSrc, dest as gulpDest } from "gulp";
 
 import { AsyncTask } from "async-done";
 
-import mainConfig from "./configuration";
+import { mainConfig } from "./configuration";
 
 export default function css(): ReturnType<AsyncTask> {
     return gulpSrc(mainConfig.css.srcEntry)

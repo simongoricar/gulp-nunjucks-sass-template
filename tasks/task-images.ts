@@ -5,7 +5,7 @@ import { src as gulpSrc, dest as gulpDest, lastRun as gulpLastRun } from "gulp";
 
 import { AsyncTask } from "async-done";
 
-import mainConfig from "./configuration";
+import { mainConfig } from "./configuration";
 
 export default function copyImages(): ReturnType<AsyncTask> {
     return gulpSrc(

@@ -1,5 +1,5 @@
 {% extends "base.njk" %}
-{% block title %}gulp-nunjucks-sass-template{% endblock %}
+{% block title %}Sample Page | gulp-nunjucks-sass-template{% endblock %}
 
 {% block headEnd %}
     {{ "assets/css/main.min.css" | cssTag | safe }}
@@ -19,7 +19,6 @@
     </p>
 
     {# Inserting script tags can be done manually or using: #}
-    {# {{ "assets/js/main.js" | scriptTag | safe }} #}
-    {{ scripts.index | safe }}
+    {{ "assets/js/main.js" | scriptTag | safe }}
 </body>
 {% endblock %}

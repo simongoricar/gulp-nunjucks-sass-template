@@ -4,7 +4,7 @@
 import browserSync from "browser-sync";
 import { AsyncTask } from "async-done";
 
-import mainConfig from "./configuration";
+import { mainConfig } from "./configuration";
 
 const browser = browserSync.create();
 

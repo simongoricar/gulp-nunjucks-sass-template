@@ -10,7 +10,7 @@ import taskHtml from "./task-html";
 import taskCopyOtherAssets from "./task-other-assets";
 import taskImages from "./task-images";
 
-import mainConfig from "./configuration";
+import { mainConfig } from "./configuration";
 
 function watchCss(): ReturnType<AsyncTask> {
     return gulpWatch(`${mainConfig.css.srcDir}/**/*.scss`, taskCss);
@@ -18,7 +18,7 @@ function watchCss(): ReturnType<AsyncTask> {
 
 function watchHtml(): ReturnType<AsyncTask> {
     return gulpWatch([
-        `${mainConfig.html.srcPages}/**/*.njk`,
+        `${mainConfig.html.srcPagesDir}/**/*.njk`,
         `${mainConfig.html.srcTemplates}/**/*.njk`,
     ], taskHtml);
 }

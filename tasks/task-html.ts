@@ -10,7 +10,7 @@ import { src as gulpSrc, dest as gulpDest, lastRun as gulpLastRun } from "gulp";
 
 import { AsyncTask } from "async-done";
 
-import mainConfig from "./configuration";
+import { mainConfig, nunjucksFilters, nunjucksGlobals } from "./configuration";
 
 const nunjucksLoader = new nunjucks.FileSystemLoader(
     mainConfig.html.srcTemplates,
@@ -19,14 +19,14 @@ const nunjucksLoader = new nunjucks.FileSystemLoader(
 
 const nunjucksEnv = (env: Environment) => {
     // Add filters
-    Object.entries(mainConfig.html.nunjucks.filters).forEach(
+    Object.entries(nunjucksFilters).forEach(
         ([key, value]) => {
             env.addFilter(key, value);
         },
     );
 
     // Add globals
-    Object.entries(mainConfig.html.nunjucks.globals).forEach(
+    Object.entries(nunjucksGlobals).forEach(
         ([key, value]) => {
             env.addGlobal(key, value);
         },
@@ -35,7 +35,7 @@ const nunjucksEnv = (env: Environment) => {
 
 export default function html(): ReturnType<AsyncTask> {
     return gulpSrc(
-        `${mainConfig.html.srcPages}/*.njk`,
+        `${mainConfig.html.srcPagesDir}/*.njk`,
         // { since: gulpLastRun(html) },
     )
         .pipe(nunjucksRender({
