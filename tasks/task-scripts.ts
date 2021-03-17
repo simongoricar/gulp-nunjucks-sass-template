@@ -4,7 +4,7 @@
 import webpack from "webpack";
 import { AsyncTask } from "async-done";
 
-import webpackConfig from "./webpack-config";
+import webpackConfig from "./webpack.config";
 
 export default function scripts(): ReturnType<AsyncTask<void>> {
     return new Promise(

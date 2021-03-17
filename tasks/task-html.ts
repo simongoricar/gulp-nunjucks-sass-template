@@ -36,7 +36,7 @@ const nunjucksEnv = (env: unknown) => {
 export default function html(): ReturnType<AsyncTask> {
     return gulpSrc(
         `${mainConfig.html.srcPages}/*.njk`,
-//        { since: gulpLastRun(html) },
+        // { since: gulpLastRun(html) },
     )
         .pipe(nunjucksRender({
             ext: ".html",
