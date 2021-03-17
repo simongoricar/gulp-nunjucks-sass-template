@@ -1,14 +1,24 @@
 {% extends "base.njk" %}
-{% block title %}Sample Text{% endblock %}
+{% block title %}gulp-nunjucks-sass-template{% endblock %}
 
-{% block main %}
-
-    <h1>Lorem ipsum</h1>
-    <p>
-        {{ foo }} {# turns into "bar" #}
-        {{ "Lorem ipsum dolor sir amet."|shorten(11) }} {# Shortens the left side to n characters #}
-    </p>
-
+{% block headEnd %}
+    {{ "assets/css/main.min.css" | cssTag | safe }}
 {% endblock %}
 
-{# include other blocks as necessary, look into templates/base.njk for more information #}
+{% block bodyOutside %}
+<body>
+    <h1>Lorem ipsum</h1>
+    <p>
+        {# For variable and filter configuration, see "tasks/configuration.ts" #}
+
+        {# turns into "bar" (a variable) #}
+        {{ foo }}
+
+        {# Shortens the left side to n characters (a filter) #}
+        {{ "Lorem ipsum dolor sir amet." | shorten(11) }}
+    </p>
+
+    {# Inserting script tags can be done manually or using: #}
+    {{ "assets/js/main.js" | scriptTag | safe }}
+</body>
+{% endblock %}

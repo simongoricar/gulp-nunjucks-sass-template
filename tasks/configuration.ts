@@ -7,15 +7,20 @@ const basePaths = {
     outputDirBase: path.resolve("./dist"),
 };
 
-type AnyNunjucksType = number | string;
-type NunjucksFilter = (...args: AnyNunjucksType[]) => AnyNunjucksType;
-
-const nunjucksFilters: { [name: string]: NunjucksFilter } = {
+const nunjucksFilters: { [name: string]: (...args: unknown[]) => unknown } = {
     shorten: (...args) => {
         const str: string = <string>args[0];
         const length: number = <number>args[1];
 
         return str.slice(0, length);
+    },
+    scriptTag: (...args) => {
+        const fileName: string = <string>args[0];
+        return `<script src="${encodeURI(fileName)}"></script>`;
+    },
+    cssTag: (...args) => {
+        const fileName: string = <string>args[0];
+        return `<link href="${encodeURI(fileName)}" rel="stylesheet">`;
     },
 };
 const nunjucksGlobals = {
@@ -24,6 +29,7 @@ const nunjucksGlobals = {
 
 const mainConfig = {
     ...basePaths,
+    isProductionEnv: process.env.NODE_ENV === "production",
     /**
      * HTML
      *  srcPages: path to the directory containing nunjucks pages (*.njk)
@@ -83,5 +89,4 @@ const mainConfig = {
     },
 };
 
-export { AnyNunjucksType, NunjucksFilter };
 export default mainConfig;

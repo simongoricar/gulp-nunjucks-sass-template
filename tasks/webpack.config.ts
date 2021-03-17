@@ -4,10 +4,8 @@
 import { Configuration } from "webpack";
 import mainConfig from "./configuration";
 
-const isProductionEnv = process.env.NODE_ENV === "production";
-
 const webpackConfig: Configuration = {
-    mode: isProductionEnv ? "production" : "development",
+    mode: mainConfig.isProductionEnv ? "production" : "development",
     entry: mainConfig.js.srcEntry,
     output: {
         path: mainConfig.js.outputDir,

@@ -1,21 +1,23 @@
 <!doctype html>
-<html class="no-js" lang="si">
+<html lang="{% block htmlLang %}en{% endblock %}">
+
+{% block headOutside %}
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% block headBegin %}{% endblock %}
+    {% block metaTags %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% endblock %}
+
     <title>{% block title %}{% endblock %}</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-    <link href="//www.google-analytics.com" rel="dns-prefetch">
-    <link href="//ajax.googleapis.com" rel="dns-prefetch">
-
-    <link href="assets/css/style.min.css" rel="stylesheet">
-
-    {% block headEnd %}
-    {% endblock %}
+    {% block headEnd %}{% endblock %}
 </head>
-{# The whole body block can be overriden if needed #}
+{% endblock %}
+
+{# The whole body block can be overriden by using the bodyOutside block #}
+{# NOTE: If the "bodyOutside" block is used, using any blocks contained in it (in the template) will have no effect! #}
 {% block bodyOutside %}
     <body>
 
@@ -40,9 +42,8 @@
     </footer>
     {% endblock %}
 
-    <script src="assets/js/jquery.min.js"></script>
-    {% block afterScripts %}
-    {% endblock %}
+    {% block scriptsBefore %}{% endblock %}
+    {% block scriptsAfter %}{% endblock %}
 
     </body>
 {% endblock %}
