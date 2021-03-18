@@ -8,9 +8,9 @@ import { AsyncTask } from "async-done";
 import { mainConfig } from "./configuration";
 
 export default function copyOtherAssets(): ReturnType<AsyncTask> {
-    return gulpSrc(
+    return gulpSrc([
         `${mainConfig.otherAssets.srcDir}/**/*`,
-        { since: gulpLastRun(copyOtherAssets) },
-    )
+        `!${mainConfig.otherAssets.srcDir}/OTHER_ASSETS_HERE.md`,
+    ], { since: gulpLastRun(copyOtherAssets) })
         .pipe(gulpDest(mainConfig.otherAssets.outputDir));
 }

@@ -1,8 +1,8 @@
 /**
  * Gulp task: SCSS -> CSS
  */
-import sassCompiler from "sass";
-import sass from "gulp-sass";
+import gulpDartSass from "gulp-dart-sass";
+import Fiber from "fibers";
 import sourcemaps from "gulp-sourcemaps";
 import gulpRename from "gulp-rename";
 import { src as gulpSrc, dest as gulpDest } from "gulp";
@@ -13,12 +13,25 @@ import { mainConfig } from "./configuration";
 
 export default function css(): ReturnType<AsyncTask> {
     return gulpSrc(mainConfig.css.srcEntry)
-        .pipe(gulpRename("style.min.css"))
+        .pipe(gulpRename(mainConfig.css.outputFilename))
         .pipe(sourcemaps.init())
         .pipe(
-            sass(
-                { compiler: sassCompiler, outputStyle: "compressed" },
-            ).on("error", sass.logError),
+            gulpDartSass(
+                {
+                    includePaths: [
+                        mainConfig.css.srcDir,
+                    ],
+                    // @ts-ignore
+                    fiber: Fiber,
+                    ...(mainConfig.isProductionEnv ? {
+                        outputStyle: "compressed",
+                        sourceComments: false,
+                    } : {
+                        outputStyle: "expanded",
+                        sourceComments: true,
+                    }),
+                },
+            ).on("error", gulpDartSass.logError),
         )
         .pipe(sourcemaps.write(mainConfig.css.sourcemapsDir))
         .pipe(gulpDest(mainConfig.css.outputDir));

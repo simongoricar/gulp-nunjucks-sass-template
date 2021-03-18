@@ -1,6 +1,6 @@
 {% extends "base.njk" %}
-{% block title %}Sample Page | gulp-nunjucks-sass-template{% endblock %}
 
+{% block title %}Sample Page | gulp-nunjucks-sass-template{% endblock %}
 {% block headEnd %}
     {{ tags.css | safe }}
 {% endblock %}
@@ -9,6 +9,7 @@
 <body>
     <h1>Lorem ipsum 2</h1>
 
+    {# This will load the sample-page.ts script, as configured in "tasks/configuration.ts". #}
     {{ tags.scripts.samplepage | safe }}
 </body>
 {% endblock %}

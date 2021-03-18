@@ -13,33 +13,61 @@ import taskImages from "./task-images";
 import { mainConfig } from "./configuration";
 
 function watchCss(): ReturnType<AsyncTask> {
-    return gulpWatch(`${mainConfig.css.srcDir}/**/*.scss`, taskCss);
+    return gulpWatch(
+        [
+            "**/*.{css,scss,sass}",
+        ],
+        {
+            cwd: mainConfig.css.srcDir,
+        },
+        taskCss,
+    );
 }
 
 function watchHtml(): ReturnType<AsyncTask> {
-    return gulpWatch([
-        `${mainConfig.html.srcPagesDir}/**/*.njk`,
-        `${mainConfig.html.srcTemplates}/**/*.njk`,
-    ], taskHtml);
+    return gulpWatch(
+        [
+            "**/*.njk",
+        ],
+        {
+            cwd: mainConfig.html.srcPagesDir,
+        },
+        taskHtml,
+    );
 }
 
 function watchImages(): ReturnType<AsyncTask> {
     return gulpWatch(
-        `${mainConfig.images.srcDir}/**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}`,
+        [
+            "**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
+        ],
+        {
+            cwd: mainConfig.images.srcDir,
+        },
         taskImages,
     );
 }
 
 function watchOtherAssets(): ReturnType<AsyncTask> {
     return gulpWatch(
-        `${mainConfig.otherAssets.srcDir}/**/*`,
+        [
+            "**/*",
+        ],
+        {
+            cwd: mainConfig.otherAssets.srcDir,
+        },
         taskCopyOtherAssets,
     );
 }
 
 function watchScripts(): ReturnType<AsyncTask> {
     return gulpWatch(
-        `${mainConfig.js.srcDir}/**/*.{js,ts}`,
+        [
+            "**/*.{js,ts}",
+        ],
+        {
+            cwd: mainConfig.js.srcDir,
+        },
         taskScripts,
     );
 }

@@ -4,7 +4,7 @@
 import browserSync from "browser-sync";
 import { AsyncTask } from "async-done";
 
-import { mainConfig } from "./configuration";
+import { basePaths } from "./configuration";
 
 const browser = browserSync.create();
 
@@ -12,10 +12,10 @@ function browserSyncInit(): ReturnType<AsyncTask<void>> {
     return new Promise((resolve) => {
         browser.init({
             server: {
-                baseDir: mainConfig.outputDirBase,
+                baseDir: basePaths.outputDirBase,
             },
             files: [
-                `${mainConfig.outputDirBase}/**/*`,
+                `${basePaths.outputDirBase}/**/*`,
             ],
             reloadDelay: 300,
             reloadDebounce: 300,

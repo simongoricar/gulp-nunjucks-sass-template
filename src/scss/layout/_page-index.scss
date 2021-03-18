@@ -1,0 +1,27 @@
+/**
+ * Example on how to use @use rules.
+ */
+@use "../vars" as vars;
+@use "../modules/animations" as animations;
+@use "../modules/common" as c;
+
+html {
+    @include c.sizeRectangle("100%");
+}
+
+.page--index {
+    font-family: vars.$font-family-native;
+
+    @include c.sizeRectangle("100%");
+    @include c.flexColumnCenter(true, true);
+
+    h1 {
+        color: vars.$colour-primary-dark;
+        font-size: 5.7rem;
+    }
+
+    div {
+        font-size: 2rem;
+        text-align: center;
+    }
+}

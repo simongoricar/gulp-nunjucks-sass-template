@@ -1,9 +1,9 @@
-## Tools
-# Node.js
+# Node & NPM
 npm-debug.log
 node_modules
 
-# Yarn, https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+# Yarn
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .yarn/*
 !.yarn/patches
 !.yarn/releases
@@ -15,11 +15,8 @@ node_modules
 # Intellij
 .idea
 
-# Project files
+# Output files
 dist
-build
-OLD*
-
 
 ## Platform-specific
 # OS X

@@ -1,1 +1,1 @@
-Other assets can be placed here and will be copied into the build.
+Other assets can be placed here. By default, they will be copied recursively into "dist"

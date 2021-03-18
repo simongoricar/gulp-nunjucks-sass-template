@@ -1,0 +1,35 @@
+/**
+ * VARIABLES
+ *
+ * Store your colors, fonts, sizes and other variables.
+ */
+
+
+///
+// COLOURS
+// Customize/create/remove your colour variables here.
+///
+
+$colour-white: #fff;
+$colour-black: #1a1a1a;
+
+// Primary
+$colour-primary-light: #bef67a;
+$colour-primary: #8bc34a;
+$colour-primary-dark: #5a9216;
+
+// Secondary
+$colour-secondary-light: #009688;
+$colour-secondary: #52c7b8;
+$colour-secondary-dark: #00675b;
+
+
+///
+// FONTS
+// Customize/create/remove your font variables here.
+///
+
+// Based on GitHub's font stack
+// More information: https://css-tricks.com/snippets/css/system-font-stack/
+$font-family-native: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

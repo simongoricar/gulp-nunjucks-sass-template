@@ -1,25 +1,32 @@
 {% extends "base.njk" %}
-{% block title %}gulp-nunjucks-sass-template{% endblock %}
 
+{# To insert content into the head, use the headEnd block #}
+{# (If you wanted to replace the entire head, you could use the headOutside block) #}
+{% block title %}gulp-nunjucks-sass-template{% endblock %}
 {% block headEnd %}
+    {# Nunjucks will escape unsafe content such as HTML tags,
+       but we don't want that. This is why it is piped into "safe" (just like scripts below) #}
     {{ tags.css | safe }}
 {% endblock %}
 
+{# The bodyOutside block will replace the entire <body></body> tag.
+   For more on available blocks, see "templates/base.njk" #}
 {% block bodyOutside %}
-<body>
-    <h1>Lorem ipsum</h1>
-    <p>
+<body class="page page--index">
+<h1><u>Lorem ipsum</u></h1>
+    <div>
         {# For variable and filter configuration, see "tasks/configuration.ts" #}
 
-        {# turns into "bar" (a variable) #}
-        {{ foo }}
+        {# turns into "bar" (just a custom variable example) #}
+        <div>Let's replace the variable <i>foo</i>: <b>{{ foo }}</b></div>
 
-        {# Shortens the left side to n characters (a filter) #}
-        {{ "Lorem ipsum dolor sir amet." | shorten(11) }}
-    </p>
+        {# Shortens the left side to n characters (just a custom filter example) #}
+        <div>Let's shorten the lorem ipsum text: <b>{{ "Lorem ipsum dolor sir amet." | shorten(11) }}</b></div>
+    </div>
 
-    {# Inserting script tags can be done manually or using: #}
-    {# {{ "assets/js/main.js" | scriptTag | safe }} #}
+    {# Inserting ready-made script tags can be done like this:
+       This will load the complete script tag for the index.ts entry point.
+       Useful for loading only scripts you need on a specific page. #}
     {{ tags.scripts.index | safe }}
 </body>
 {% endblock %}

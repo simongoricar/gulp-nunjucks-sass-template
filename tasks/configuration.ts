@@ -1,7 +1,5 @@
 import path from "path";
 
-import { getFilepathFilenameNoExt } from "./utilities";
-
 process.chdir(`${__dirname}/..`);
 
 const basePaths = {
@@ -36,15 +34,16 @@ const basePaths = {
      *  srcOtherAssetsDirName: source directory for other assets
      */
     srcHtmlDirName: "pages",
-    srcHtmlTemplatesDirName: "pageTemplates",
+    srcHtmlTemplatesDirName: "templates",
 
     srcScssDirName: "scss",
     srcCssEntry: "main.scss",
 
     srcTSDirName: "scripts",
     srcTSEntries: {
+        // Output filename will be "[entry key].js"
         index: "index.ts",
-        samplepage: "samplepage.ts",
+        samplepage: "sample-page.ts",
     },
 
     srcImagesDirName: "images",
@@ -65,6 +64,7 @@ const basePaths = {
      * CSS
      *  (relative to outputAssetsDirName)
      *  outputCssDirName: name of the CSS output directory
+     *  outputCssFilename: output file name
      *  outputCssSourcemapsDirName: name of the CSS sourcemaps directory (inside outputCssDirName)
      *
      * JavaScript
@@ -84,6 +84,7 @@ const basePaths = {
     outputHtmlDirName: ".",
 
     outputCssDirName: "css",
+    outputCssFilename: "style.min.css",
     outputCssSourcemapsDirName: "sourcemaps",
 
     outputJsDirName: "js",
@@ -114,8 +115,8 @@ const nunjucksFilters: { [name: string]: (...args: unknown[]) => unknown } = {
 // eslint-disable-next-line import/no-mutable-exports
 let nunjucksGlobals: { [key: string]: unknown } = {
     foo: "bar",
-    // per-page script entries are added automatically based on the data below
-    // (format for variables: "script[name]", see index.njk for an example)
+    // per-page complete script tags (and css tags) are added automatically based on the data below
+    // (format for variables: "tags.script.name" and "tags.css", see index.njk for an example)
 };
 
 const mainConfig = {
@@ -143,6 +144,7 @@ const mainConfig = {
             basePaths.outputAssetsDirName,
             basePaths.outputCssDirName,
         ),
+        outputFilename: basePaths.outputCssFilename,
     },
 
     js: {
@@ -153,7 +155,6 @@ const mainConfig = {
             ],
         )),
         srcDir: path.join(basePaths.srcDirBase, basePaths.srcTSDirName),
-        // srcEntry: path.join(basePaths.srcDirBase, "scripts", "index.ts"),
         outputDir: path.join(
             basePaths.outputDirBase,
             basePaths.outputAssetsDirName,
@@ -184,18 +185,17 @@ nunjucksGlobals = {
         css: nunjucksFilters.cssTag([
             basePaths.outputAssetsDirName,
             basePaths.outputCssDirName,
-            `${getFilepathFilenameNoExt(basePaths.srcCssEntry)}.min.css`,
+            basePaths.outputCssFilename,
         ].join("/")),
         // Dynamic ready script tags
         scripts: Object.fromEntries(
             Object.entries(mainConfig.js.entries).map(
                 (item) => {
                     const key = item[0];
-                    const value = item[1];
                     return [
                         key,
                         nunjucksFilters.scriptTag(
-                            `assets/js/${path.basename(value)}`,
+                            `assets/js/${key}.js`,
                         ),
                     ];
                 },

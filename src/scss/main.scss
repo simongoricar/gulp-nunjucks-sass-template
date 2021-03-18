@@ -1,0 +1,18 @@
+/**
+ * This SCSS file serves as an entry file for the entire stylesheet.
+ */
+
+///
+// Load base SCSS
+///
+@use "base/_normalize.css";
+@use "base/defaults";
+@use "base/fonts";
+
+
+///
+// Load all layouts
+///
+@use "layout/page-index";
+
+
