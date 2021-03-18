@@ -3,8 +3,10 @@
  */
 import browserSync from "browser-sync";
 import { AsyncTask } from "async-done";
+import path from "path";
 
 import { basePaths } from "./configuration";
+import packageJson from "../package.json";
 
 const browser = browserSync.create();
 
@@ -15,11 +17,13 @@ function browserSyncInit(): ReturnType<AsyncTask<void>> {
                 baseDir: basePaths.outputDirBase,
             },
             files: [
-                `${basePaths.outputDirBase}/**/*`,
+                path.join(basePaths.outputDirBase, "**", "*"),
             ],
             reloadDelay: 300,
             reloadDebounce: 300,
             reloadOnRestart: true,
+            logPrefix: packageJson.name,
+            online: false,
         });
         resolve();
     });

@@ -3,7 +3,7 @@
     "src/scripts/**/**.ts",
     "tasks/**/*.ts",
     "*.ts",
-    "*.js",
+    "*.js"
   ],
   "compilerOptions": {
     "allowJs": true,
@@ -19,7 +19,8 @@
     "esModuleInterop": true,
     "lib": [
         "ES2020",
-        "DOM",
-    ]
+        "DOM"
+    ],
+    "resolveJsonModule": true
   }
 }
