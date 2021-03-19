@@ -2,8 +2,8 @@
  * Example on how to use @use rules.
  */
 @use "../vars" as vars;
-@use "../modules/animations" as animations;
 @use "../modules/common" as c;
+@use "../modules/media" as m;
 
 html {
     @include c.sizeRectangle("100%");
@@ -11,12 +11,14 @@ html {
 
 .page--index {
     font-family: vars.$font-family-native;
+    background-color: vars.$color-background-dark;
+    color: vars.$colour-white;
 
     @include c.sizeRectangle("100%");
     @include c.flexColumnCenter(true, true);
 
     h1 {
-        color: vars.$colour-primary-dark;
+        color: saturate(vars.$colour-primary-dark, 25%);
         font-size: 5.7rem;
     }
 
@@ -24,4 +26,21 @@ html {
         font-size: 2rem;
         text-align: center;
     }
+
+    @include m.mediaTabletPortraitUpTo() {
+        h1 {
+            font-size: 4rem;
+            color: lightgray;
+
+            &:after {
+                content: "\AWe're on a phone!";
+                white-space: pre;
+
+                @include c.relativePos(0, 0, 0, 50%);
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+    }
+
 }

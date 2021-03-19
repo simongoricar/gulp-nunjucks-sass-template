@@ -1,10 +1,10 @@
-/**
- * Most common CSS animations and keyframes ported from:
- * - https://easings.net/
- * - http://cubic-bezier.com
- * - https://matthewlein.com/tools/ceaser
- *
- */
+////
+/// Common CSS animations ported from:
+/// - https://easings.net/
+/// - http://cubic-bezier.com
+/// - https://matthewlein.com/tools/ceaser
+///
+////
 
 // Sine
 $ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -47,11 +47,9 @@ $ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 
-/**
- * shakeKeyframes($keyframeRuleName, $intensity: 1)
- *
- * Will create a shake @keyframe animation. Optionally, ajdust the intensity.
- */
+///
+/// Will create a shake @keyframe animation. Optionally, ajdust the intensity.
+///
 @mixin shakeKeyframes($keyframeRuleName, $intensity: 1) {
     @keyframes #{$keyframeRuleName} {
         10%, 90% {

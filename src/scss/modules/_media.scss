@@ -1,0 +1,79 @@
+////
+/// _media.scss
+/// A set set of customizations and forwardings for include-media
+/// (https://eduardoboucas.github.io/include-media)
+////
+
+/// Breakpoint sizes inspired by
+/// https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+$mediaBreakpoints: (
+    "phone": 599px,
+    "tablet-portrait": 600px,
+    "tablet-landscape": 900px,
+    "desktop": 1200px,
+    "big-desktop": 1800px
+);
+
+@use "../vendor/include-media/include-media" as im with (
+    $breakpoints: $mediaBreakpoints
+);
+
+@forward "../vendor/include-media/include-media" as im-*;
+
+////
+/// Handy include-media shortcut mixins
+////
+
+///
+/// Syntactic sugar for media query "<=phone"
+///
+@mixin mediaPhoneOnly() {
+    @include im.media("<=phone") {
+        @content;
+    }
+}
+
+///
+/// Syntactic sugar for media query "<tablet-landscape"
+///
+@mixin mediaTabletPortraitUpTo() {
+    @include im.media("<tablet-landscape") {
+        @content;
+    }
+};
+
+///
+/// Syntactic sugar for media query ">=tablet-portrait"
+///
+@mixin mediaTabletPortraitAndUp() {
+    @include im.media(">=tablet-portrait") {
+        @content;
+    }
+}
+
+///
+/// Syntactic sugar for media query ">=tablet-landscape"
+///
+@mixin mediaTabletLandscapeAndUp() {
+    @include im.media(">=tablet-landscape") {
+        @content;
+    }
+}
+
+///
+/// Syntactic sugar for media query ">=desktop"
+///
+@mixin mediaDesktopAndUp() {
+    @include im.media(">=desktop") {
+        @content;
+    }
+}
+///
+/// Syntactic sugar for media query ">=big-desktop"
+///
+@mixin mediaBigDesktopAndUp() {
+    @include im.media(">=big-desktop") {
+        @content;
+    }
+}
+
