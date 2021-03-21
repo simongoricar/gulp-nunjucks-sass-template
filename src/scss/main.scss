@@ -15,10 +15,14 @@
 @use "base/defaults";
 @use "base/fonts";
 
+@use "vars" as vars;
+@use "base/bones" with (
+    $font-family: vars.$font-family-native,
+);
+
 
 ///
 // Load all layouts
 ///
 @use "layout/page-index";
-
-
+@use "layout/page-bones";

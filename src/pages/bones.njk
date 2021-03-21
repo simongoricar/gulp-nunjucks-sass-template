@@ -1,0 +1,127 @@
+{% extends "base.njk" %}
+
+{% block title %}Bones Boilerplate | gulp-nunjucks-sass-template{% endblock %}
+{% block headEnd %}
+    {{ tags.css | safe }}
+{% endblock %}
+
+{% block bodyOutside %}
+<body class="page--bones container">
+    <div class="container__child page__content">
+        {#
+            INTRODUCTION
+        #}
+        <h1 class="text-center">Bones</h1>
+        <h5 class="text-center">A customizable <i>basics-only</i> SCSS boilerplate.</h5>
+        <p class="mt40 text-justify-intercharacter">
+            Bones is a tiny customizable SCSS boilerplate intended as a starting point for almost any site.
+            Inspired by other boilerplates like <a href="http://getskeleton.com/">Skeleton</a> and
+            <a href="https://github.com/acahir/Barebones">Barebones</a> (both sadly abandoned), it is a result of
+            wanting a simple modern boilerplate that could serve well as a starting point for pretty much any website,
+            basic support for mobile included.
+        </p>
+        <hr>
+
+        {#
+            CSS GRID
+        #}
+        <h3>1. Grid</h3>
+        <p> The grid uses CSS's grid system. It includes six grid setups: </p>
+        <ul>
+            <li><code>grid--single</code></li>
+            <li><code>grid--halves</code></li>
+            <li><code>grid--thirds</code></li>
+            <li><code>grid--quarters</code></li>
+            <li><code>grid--sixths</code></li>
+        </ul>
+        <p>
+            Each one corresponds to a grid setup with that number of columns.
+            By default, grid elements stretch to their entire available space. To center instead, use:
+        </p>
+        <ul>
+            <li><code>grid__center-horizontal</code></li>
+            <li><code>grid__center-vertical</code></li>
+        </ul>
+        <p>
+            Some examples:
+        </p>
+        <div class="mt30 mb40 flex flex--column flex--center">
+            <span id="grid-demo1" class="grid--quarters">
+                <span>First</span>
+                <span>Second</span>
+                <span>Third</span>
+                <span>Fourth</span>
+            </span>
+            <span class="demo-annotation">A <code>flex--quarters</code> grid.</span>
+<pre>
+<code class="multiline">&lt;span class="grid--quarters">
+    &lt;span>First&lt;/span>
+    &lt;span>Second&lt;/span>
+    &lt;span>Third&lt;/span>
+    &lt;span>Fourth&lt;/span>
+&lt;/span>
+</code>
+</pre>
+        </div>
+        <div class="mt30 mb40 flex flex--column flex--center">
+            <span id="grid-demo2" class="grid--sixths">
+                <span>First</span>
+                <span>Second</span>
+                <span class="grid__center-horizontal">Third</span>
+                <span class="grid__center-vertical">Fourth</span>
+                <span>Fifth</span>
+                <span>Sixth</span>
+            </span>
+            <span class="demo-annotation">A <code>flex--sixths</code> grid.</span>
+<pre>
+<code class="multiline">&lt;span class="grid--sixths">
+    &lt;span>First&lt;/span>
+    &lt;span>Second&lt;/span>
+    &lt;span class="grid__center-horizontal">Third&lt;/span>
+    &lt;span class="grid__center-vertical">Fourth&lt;/span>
+    &lt;span>Fifth&lt;/span>
+    &lt;span>Sixth&lt;/span>
+&lt;/span>
+</code>
+</pre>
+        </div>
+        <hr>
+
+        {#
+            CONTAINERS
+        #}
+        <h3>2. Containers</h3>
+        <p>
+            The grid system above only creates the grid and nothing more. Containers however, are meant for centered text.
+            The entire page you're viewing is actually a single <code>container__child</code> inside of a <code>container</code>!
+        </p>
+<pre>
+<code class="multiline">&lt;body class="container">
+    &lt;div class="container__child">
+        ... your page-centered content
+    &lt;/div>
+&lt;/body>
+</code>
+</pre>
+        <p>
+            Containers automatically expand on smaller screens to fill more and more space. On mobile, the container
+            will fill almost the entire page width.
+        </p>
+        <hr>
+
+        {#
+            FLEX
+        #}
+        <h3>3. Flex Centering</h3>
+        <div class="mt40 mb40 flex flex--column flex--center">
+            <span id="flex-demo" class="p20 text-center flex flex--column flex--center">
+                <span class="mb10">This is some flex-centered content.</span>
+            </span>
+            <span class="demo-annotation">The parent box has the classes <br><b>flex flex--rows flex--center</b>.</span>
+        </div>
+    </div>
+
+    {# This will load the sample-page.ts script, as configured in "tasks/configuration.ts". #}
+    {{ tags.scripts.samplepage | safe }}
+</body>
+{% endblock %}

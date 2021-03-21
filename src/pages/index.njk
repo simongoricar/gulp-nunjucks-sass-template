@@ -12,16 +12,18 @@
 {# The bodyOutside block will replace the entire <body></body> tag.
    For more on available blocks, see "templates/base.njk" #}
 {% block bodyOutside %}
-<body class="page page--index">
-<h1><u>gulp-nunjucks-sass-template</u></h1>
-    <div>
-        {# For variable and filter configuration, see "tasks/configuration.ts" #}
+<body class="page--index container">
+    <div class="container__child center-horizontal center-vertical">
+        <h1><u>gulp-nunjucks-sass-template</u></h1>
+        <div>
+            {# For variable and filter configuration, see "tasks/configuration.ts" #}
 
-        {# turns into "bar" (just a custom variable example) #}
-        <div>Let's replace the variable <i>foo</i>: <b>{{ foo }}</b></div>
+            {# turns into "bar" (just a custom variable example) #}
+            <div>Let's replace the variable <i>foo</i>: <b>{{ foo }}</b></div>
 
-        {# Shortens the left side to n characters (just a custom filter example) #}
-        <div>Let's shorten the lorem ipsum text: <b>{{ "Lorem ipsum dolor sir amet." | shorten(11) }}</b></div>
+            {# Shortens the left side to n characters (just a custom filter example) #}
+            <div>Let's shorten the lorem ipsum text: <b>{{ "Lorem ipsum dolor sir amet." | shorten(11) }}</b></div>
+        </div>
     </div>
 
     {# Inserting ready-made script tags can be done like this:

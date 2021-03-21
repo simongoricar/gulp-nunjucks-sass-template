@@ -6,6 +6,7 @@
 
 /// Breakpoint sizes inspired by
 /// https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+/// The include-media library is loaded with these breakpoints.
 $mediaBreakpoints: (
     "phone": 599px,
     "tablet-portrait": 600px,
@@ -26,8 +27,9 @@ $mediaBreakpoints: (
 
 ///
 /// Syntactic sugar for media query "<=phone"
+/// @content @media rule content
 ///
-@mixin mediaPhoneOnly() {
+@mixin onlyPhone {
     @include im.media("<=phone") {
         @content;
     }
@@ -35,8 +37,9 @@ $mediaBreakpoints: (
 
 ///
 /// Syntactic sugar for media query "<tablet-landscape"
+/// @content @media rule content
 ///
-@mixin mediaTabletPortraitUpTo() {
+@mixin upToTabletPortrait {
     @include im.media("<tablet-landscape") {
         @content;
     }
@@ -44,36 +47,83 @@ $mediaBreakpoints: (
 
 ///
 /// Syntactic sugar for media query ">=tablet-portrait"
+/// @content @media rule content
 ///
-@mixin mediaTabletPortraitAndUp() {
+@mixin tabletPortraitUp {
     @include im.media(">=tablet-portrait") {
         @content;
     }
 }
 
 ///
-/// Syntactic sugar for media query ">=tablet-landscape"
+/// Syntactic sugar for media query "<desktop"
+/// @content @media rule content
 ///
-@mixin mediaTabletLandscapeAndUp() {
+@mixin upToTabletLandscape {
+    @include im.media("<desktop") {
+        @content;
+    }
+};
+
+///
+/// Syntactic sugar for media query ">=tablet-landscape"
+/// @content @media rule content
+///
+@mixin tabletLandscapeUp {
     @include im.media(">=tablet-landscape") {
         @content;
     }
 }
 
 ///
-/// Syntactic sugar for media query ">=desktop"
+/// Syntactic sugar for media query "<big-desktop"
+/// @content @media rule content
 ///
-@mixin mediaDesktopAndUp() {
+@mixin upToDesktop {
+    @include im.media("<big-desktop") {
+        @content;
+    }
+}
+
+///
+/// Syntactic sugar for media query ">=desktop"
+/// @content @media rule content
+///
+@mixin desktopUp {
     @include im.media(">=desktop") {
         @content;
     }
 }
 ///
 /// Syntactic sugar for media query ">=big-desktop"
+/// @content @media rule content
 ///
-@mixin mediaBigDesktopAndUp() {
+@mixin bigDesktopUp {
     @include im.media(">=big-desktop") {
         @content;
     }
 }
 
+/////
+/// Other handy @media mixins
+/////
+
+///
+/// Syntactic sugar for media query "prefers-color-scheme: dark"
+/// @content @media rule content
+///
+@mixin withDarkMode {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+///
+/// Syntactic sugar for media query "prefers-reduced-motion"
+/// @content @media rule content
+///
+@mixin onReducedMotion {
+    @media (prefers-reduced-motion) {
+        @content;
+    }
+}

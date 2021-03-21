@@ -5,17 +5,16 @@
 @use "../modules/common" as c;
 @use "../modules/media" as m;
 
+// TODO move, doesn't belong here
 html {
     @include c.sizeRectangle("100%");
 }
 
 .page--index {
-    font-family: vars.$font-family-native;
     background-color: vars.$color-background-dark;
     color: vars.$colour-white;
 
-    @include c.sizeRectangle("100%");
-    @include c.flexColumnCenter(true, true);
+    @include c.sizeRectangle(100%);
 
     h1 {
         color: saturate(vars.$colour-primary-dark, 25%);
@@ -27,16 +26,14 @@ html {
         text-align: center;
     }
 
-    @include m.mediaTabletPortraitUpTo() {
+    @include m.upToTabletPortrait() {
         h1 {
             font-size: 4rem;
             color: lightgray;
 
             &:after {
-                content: "\AWe're on a phone!";
+                content: "\AWe're on a smaller screen!";
                 white-space: pre;
-
-                @include c.relativePos(0, 0, 0, 50%);
                 font-size: 2rem;
                 text-align: center;
             }

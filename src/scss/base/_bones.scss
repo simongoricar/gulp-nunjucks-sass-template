@@ -1,0 +1,324 @@
+////
+/// Ivory
+///
+/// A *very* simple SCSS boilerplate inspired by
+/// [Skeleton](https://github.com/dhg/Skeleton) and [Barebones](https://github.com/acahir/Barebones).
+///
+/// Includes only the basics. For resets: normalize.css.
+///
+/// @author Simon Goričar
+////
+
+// Uses the media module
+@use "../modules/media" as media;
+
+
+// @use with custom styles for customization
+
+// default colours
+$text-colour: #fff !default;
+$background-color: #212121 !default;
+$border-colour: #212121 !default;
+
+// <a> tag colours
+$link-colour: #7082be !default;
+$link-colour-hover: #8da4ef !default;
+
+// Transition to use for hover and other effects
+$transition: .2s ease !default;
+
+// Based on GitHub's font stack
+// More information: https://css-tricks.com/snippets/css/system-font-stack/
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+                     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+// Which padding and margin rules to generate
+// Values are in pixels
+$padding-rules: (10, 20, 25, 40, 60, 100) !default;
+$margin-rules: (10, 20, 25, 40, 60, 100) !default;
+
+
+////
+/// LAYOUTS AND TYPOGRAPHY
+////
+* {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+}
+
+html {
+    font-family: $font-family;
+    // 10px / 16px = 62.5%
+    // rem units are now scaled to 1rem = 10px
+    font-size: 62.5%;
+    overflow: hidden;
+}
+
+body {
+    // Normal text will be 1.6rem = 16px
+    font-size: 1.6rem;
+    overflow: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+h1, .h1 { font-size: 5rem; }
+h2, .h2 { font-size: 4.2rem; }
+h3, .h3 { font-size: 3.6rem; }
+h4, .h4 { font-size: 3.0rem; }
+h5, .h5 { font-size: 2.4rem; }
+h6, .h6 { font-size: 1.5rem; }
+
+@include media.upToTabletPortrait {
+    h1, .h1 { font-size: 4.6rem; }
+    h2, .h2 { font-size: 3.8rem; }
+    h3, .h3 { font-size: 3.4rem; }
+    h4, .h4 { font-size: 3.0rem; }
+    h5, .h5 { font-size: 2.4rem; }
+    h6, .h6 { font-size: 1.7rem; }
+}
+
+p, ul li {
+    margin-top: 0;
+    line-height: 1.45;
+}
+
+a {
+    color: $link-colour;
+    transition: $transition;
+
+    &:hover {
+        color: $link-colour-hover;
+    }
+}
+
+hr {
+    margin-top: 2.5rem;
+    margin-bottom: 3.2rem;
+    border-top: 1px solid $border-colour;
+}
+
+code {
+    // By default, <code> is a single-line code block.
+    // Add "multiline" class to add multiline styles.
+    display: inline-block;
+    margin: 0 3px;
+    padding: 3px;
+    background-color: lighten($background-color, 5%);
+
+    &.multiline {
+        display: block;
+        padding: 15px;
+    }
+}
+
+/// Common CSS rules compacted into classes
+
+// Text aligns
+.text {
+    &-left { text-align: left; }
+    &-center { text-align: center; }
+    &-right { text-align: right; }
+    &-justify-interword { text-align: justify; text-justify: inter-word; }
+    &-justify-intercharacter { text-align: justify; text-justify: inter-character; }
+    &-justify { text-align: justify; text-justify: auto; }
+}
+
+// Full width/height shorthands
+.element {
+    &-fullWidth { width: 100%; }
+    &-fullHeight { height: 100% }
+    &-fullSize {
+        @extend .element-fullWidth;
+        @extend .element-fullHeight;
+    }
+}
+
+// Element margins and paddings
+@each $padding-size in $padding-rules {
+    // All sides
+    .p#{$padding-size} { padding: $padding-size * 1px; }
+    // Single side
+    .pt#{$padding-size} { padding-top: $padding-size * 1px; }
+    .pr#{$padding-size} { padding-right: $padding-size * 1px; }
+    .pb#{$padding-size} { padding-bottom: $padding-size * 1px; }
+    .pl#{$padding-size} { padding-left: $padding-size * 1px; }
+}
+
+@each $margin-size in $margin-rules {
+    // All sides
+    .m#{$margin-size} { margin: $margin-size * 1px; }
+    // Single side
+    .mt#{$margin-size} { margin-top: $margin-size * 1px; }
+    .mr#{$margin-size} { margin-right: $margin-size * 1px; }
+    .mb#{$margin-size} { margin-bottom: $margin-size * 1px; }
+    .ml#{$margin-size} { margin-left: $margin-size * 1px; }
+}
+
+
+////
+/// GRID SYSTEM
+/// ("grid" mixin)
+/// Note: no need for something like "grid grid--halves", "grid--halves" already includes "grid" rules.
+///
+/// Specify columns with mixins:
+///     "grid--halves"
+///     "grid--thirds"
+///     "grid--quarters"
+///     "grid--sixths"
+///
+/// Only creates the grid, does not align elements. See .container for common usage.
+///
+/// USAGE NOTE
+/// Due to @media queries (https://github.com/sass/sass/issues/456), I am forced to make mixins for this.
+/// If possible, use @extend. For @media queries, mixin @includes will be needed instead.
+///
+////
+
+@mixin grid {
+    display: grid;
+}
+
+@mixin grid--single {
+    @include grid;
+    // If the screen width is <100px, this will maintain the minimal width at 100px
+    grid-template-columns: minmax(100px, 100%);
+}
+
+@mixin grid--halves {
+    @include grid;
+    grid-template-columns: repeat(2, calc(100% / 2));
+}
+
+@mixin grid--thirds {
+    @include grid;
+    grid-template-columns: repeat(3, calc(100% / 3));
+}
+
+@mixin grid--quarters {
+    @include grid;
+    grid-template-columns: repeat(4, calc(100% / 4));
+}
+
+@mixin grid--quarters {
+    @include grid;
+    grid-template-columns: repeat(4, calc(100% / 4));
+}
+
+@mixin grid--sixths {
+    @include grid;
+    grid-template-columns: repeat(6, calc(100% / 6));
+}
+
+
+// To be used on grid child elements
+@mixin grid__center-horizontal {
+    justify-self: center;
+}
+
+@mixin grid__center-vertical {
+    align-self: center;
+}
+
+// Output them once for @extend availability
+.grid { @include grid; }
+.grid--single { @include grid--single; }
+.grid--halves { @include grid--halves; }
+.grid--thirds { @include grid--thirds; }
+.grid--quarters { @include grid--quarters; }
+.grid--sixths { @include grid--sixths; }
+.grid__center-horizontal { @include grid__center-horizontal; }
+.grid__center-vertical { @include grid__center-vertical; }
+
+////
+/// CONTAINER (based on a grid, but horizontally padded)
+/// Desktop: fills 60% of the available width
+/// Large phones/tablets: fills 85% of the available width
+/// Phones: fills entire width (with 15px padding)
+////
+
+.container {
+    justify-self: stretch;
+    align-self: stretch;
+
+    @at-root #{&}__child.center-horizontal {
+        @extend .grid__center-horizontal;
+    }
+
+    @at-root #{&}__child.center-vertical {
+        @extend .grid__center-vertical;
+    }
+
+    @include media.onlyPhone {
+        @include grid;
+        // A single full-width column with some side padding
+        grid-template-columns: [margin-left] minmax(15px, 1fr) [content] minmax(300px, 600px) [margin-right] minmax(15px, 1fr);
+
+        &__child {
+            grid-column: 2;
+        }
+    }
+
+    @include media.tabletPortraitUp {
+        @include grid;
+        // Slightly wider than on desktop
+        grid-template-columns: [margin-left] 1fr [content] minmax(85%, 580px) [margin-right] 1fr;
+
+        &__child {
+            grid-column: 2;
+        }
+    }
+
+    @include media.tabletLandscapeUp {
+        @include grid;
+        // Fills around half
+        grid-template-columns: [margin-left] 1fr [content] minmax(60%, 850px) [margin-right] 1fr;
+
+        &__child {
+            grid-column: 2;
+        }
+    }
+}
+
+////
+/// CENTERING SYSTEM
+////
+
+.flex {
+    display: flex;
+
+    @at-root #{&}--row {
+        flex-direction: row;
+    }
+    @at-root #{&}--column {
+        flex-direction: column;
+    }
+
+    @at-root #{&}--justify-start {
+        justify-content: flex-start;
+    }
+    @at-root #{&}--justify-center {
+        justify-content: center;
+    }
+    @at-root #{&}--justify-end {
+        justify-content: flex-end;
+    }
+
+    @at-root #{&}--align-start {
+        align-items: flex-start;
+    }
+    @at-root #{&}--align-center {
+        align-items: center;
+    }
+    @at-root #{&}--align-end {
+        align-items: flex-end;
+    }
+
+    @at-root #{&}--center {
+        @extend .flex--justify-center;
+        @extend .flex--align-center;
+    }
+}
