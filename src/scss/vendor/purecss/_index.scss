@@ -1,0 +1,20 @@
+// With help from https://github.com/pure-css/pure/blob/master/Gruntfile.js
+
+@use "base/base.css";
+
+@use "buttons/buttons-core.css";
+@use "buttons/buttons.css";
+
+@use "forms/forms.css";
+@use "forms/forms-r.css";
+
+@use "grids/grids-base.css";
+@use "grids/grids-responsive.css";
+
+@use "menus/menus-core.css";
+@use "menus/menus-dropdown.css";
+@use "menus/menus-horizontal.css";
+@use "menus/menus-scrollable.css";
+@use "menus/menus-skin.css";
+
+@use "tables/tables.css";
