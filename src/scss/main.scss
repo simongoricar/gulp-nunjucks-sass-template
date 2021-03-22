@@ -5,25 +5,25 @@
 ///
 // Load libraries
 ///
-// include-media is @use-d with the "media" module.
+@use "vendor/normalize";
 @use "vendor/purecss";
-
-
-///
-// Load base SCSS
-///
-@use "base/_normalize.css";
-@use "base/defaults";
-@use "base/fonts";
+// include-media is loaded on demand with the "media" module.
 
 @use "vars" as vars;
-@use "base/bones" with (
+@use "vendor/bones" with (
     $font-family: vars.$font-family-native,
 );
 
 
 ///
-// Load all layouts
+// Load base SCSS
+///
+@use "base/defaults";
+@use "base/fonts";
+
+
+///
+// Load all (page) layouts
 ///
 @use "layout/page-index";
 @use "layout/page-bones";

@@ -1,7 +1,7 @@
 @use "../vars" as vars;
 @use "../modules/common" as c;
 @use "../modules/media" as m;
-@use "../base/bones" as bones;
+@use "../vendor/bones" as bones;
 
 $demo-background-colour: darken(desaturate(vars.$colour-primary, 40%), 10%);
 
