@@ -12,6 +12,7 @@ import taskImages from "./task-images";
 import taskClean from "./task-clean";
 import {
     watchCss, watchHtml, watchImages, watchOtherAssets, watchScripts,
+    watchAndWarnConfigChanges,
 } from "./task-watch";
 import { browserSyncInit } from "./task-browsersync";
 
@@ -29,6 +30,7 @@ export const build = gulp.series(
 export const watch = gulp.parallel(
     watchCss, watchHtml, watchImages,
     watchOtherAssets, watchScripts,
+    watchAndWarnConfigChanges,
 );
 
 // noinspection JSUnusedGlobalSymbols
