@@ -1,13 +1,12 @@
 /**
  * Gulp task: Nunjucks -> HTML
  */
-import nunjucks, { Environment } from "nunjucks";
 // @ts-ignore
 import nunjucksRender from "gulp-nunjucks-render";
 // @ts-ignore
 import htmlMin from "gulp-htmlmin";
-import { src as gulpSrc, dest as gulpDest, lastRun as gulpLastRun } from "gulp";
-
+import { src as gulpSrc, dest as gulpDest } from "gulp";
+import nunjucks, { Environment } from "nunjucks";
 import { AsyncTask } from "async-done";
 
 import { mainConfig, nunjucksFilters, nunjucksGlobals } from "./configuration";

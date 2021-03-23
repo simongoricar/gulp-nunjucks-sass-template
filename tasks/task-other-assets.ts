@@ -2,7 +2,6 @@
  * Gulp task: Other assets
  */
 import { src as gulpSrc, dest as gulpDest, lastRun as gulpLastRun } from "gulp";
-
 import { AsyncTask } from "async-done";
 
 import { mainConfig } from "./configuration";

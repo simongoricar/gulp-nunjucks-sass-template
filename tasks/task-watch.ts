@@ -1,6 +1,7 @@
 /**
  * Gulp task: Other assets
  */
+import path from "path";
 import { watch as gulpWatch } from "gulp";
 import { AsyncTask } from "async-done";
 
@@ -11,7 +12,6 @@ import taskCopyOtherAssets from "./task-other-assets";
 import taskImages from "./task-images";
 
 import { mainConfig } from "./configuration";
-import * as path from "path";
 
 function watchCss(): ReturnType<AsyncTask> {
     return gulpWatch(

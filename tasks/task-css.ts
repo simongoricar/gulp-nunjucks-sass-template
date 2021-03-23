@@ -6,7 +6,6 @@ import Fiber from "fibers";
 import sourcemaps from "gulp-sourcemaps";
 import gulpRename from "gulp-rename";
 import { src as gulpSrc, dest as gulpDest } from "gulp";
-
 import { AsyncTask } from "async-done";
 
 import { mainConfig } from "./configuration";
