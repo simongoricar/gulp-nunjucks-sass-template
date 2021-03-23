@@ -13,8 +13,8 @@
     "dev": "gulp --require @babel/register --gulpfile tasks/index.ts",
     "buildProduction": "NODE_ENV=production gulp build --require @babel/register --gulpfile tasks/index.ts",
     "buildDev": "gulp build --require @babel/register --gulpfile tasks/index.ts",
-    "lintTS": "eslint --cache src/**/*",
-    "lintTSFix": "eslint --cache --fix src/**/*",
+    "lintTS": "eslint --cache src/**/*.ts",
+    "lintTSFix": "eslint --cache --fix src/**/*.ts",
     "lintSCSS": "stylelint --cache src/scss/**/*.{css,scss}",
     "lintSCSSFix": "stylelint --cache --fix src/scss/**/*.{css,scss}"
   },
