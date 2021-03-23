@@ -50,21 +50,26 @@ $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 ///
 /// Will create a shake @keyframe animation. Optionally, ajdust the intensity.
 ///
-@mixin shakeKeyframes($keyframeRuleName, $intensity: 1) {
+@mixin shake-keyframes($keyframeRuleName, $intensity: 1) {
     @keyframes #{$keyframeRuleName} {
-        10%, 90% {
+        10%,
+        90% {
             transform: translateX(-1px * $intensity);
         }
 
-        20%, 80% {
+        20%,
+        80% {
             transform: translateX(2px * $intensity);
         }
 
-        30%, 50%, 70% {
+        30%,
+        50%,
+        70% {
             transform: translateX(-4px * $intensity);
         }
 
-        40%, 60% {
+        40%,
+        60% {
             transform: translateX(4px * $intensity);
         }
     }

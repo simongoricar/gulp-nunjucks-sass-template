@@ -7,14 +7,28 @@
 
 // TODO move, doesn't belong here
 html {
-    @include c.sizeRectangle("100%");
+    @include c.size-rectangle("100%");
 }
 
 .page--index {
+    @include c.size-rectangle(100%);
+
     background-color: vars.$color-background-dark;
     color: vars.$colour-white;
 
-    @include c.sizeRectangle(100%);
+    @include m.upToTabletPortrait() {
+        h1 {
+            color: #bebebe;
+            font-size: 4rem;
+        }
+
+        h1::after {
+            content: "\AWe're on a smaller screen!";
+            font-size: 2rem;
+            text-align: center;
+            white-space: pre;
+        }
+    }
 
     h1 {
         color: saturate(vars.$colour-primary-dark, 25%);
@@ -25,19 +39,4 @@ html {
         font-size: 2rem;
         text-align: center;
     }
-
-    @include m.upToTabletPortrait() {
-        h1 {
-            font-size: 4rem;
-            color: lightgray;
-
-            &:after {
-                content: "\AWe're on a smaller screen!";
-                white-space: pre;
-                font-size: 2rem;
-                text-align: center;
-            }
-        }
-    }
-
 }

@@ -8,8 +8,9 @@
 @mixin fontFace($fontFamily, $woffUrl, $woff2Url) {
     @font-face {
         font-family: $fontFamily;
-        src: url($woff2Url) format("woff2")
-             url($woffUrl) format("woff");
+        src:
+            url($woff2Url) format("woff2")
+            url($woffUrl) format("woff");
     }
 }
 

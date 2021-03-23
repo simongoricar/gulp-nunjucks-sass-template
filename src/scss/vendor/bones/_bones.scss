@@ -25,12 +25,12 @@ $link-colour: #9fa9c8 !default;
 $link-colour-hover: #d3dbf3 !default;
 
 // Transition to use for hover and other effects
-$transition: .2s ease !default;
+$transition: 0.2s ease !default;
 
 // Based on GitHub's font stack
 // More information: https://css-tricks.com/snippets/css/system-font-stack/
 $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-                     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
 // Which padding and margin rules to generate
 // Values are in pixels
@@ -60,30 +60,58 @@ body {
     overflow: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-bottom: 2rem;
+    margin-top: 0;
 }
 
-h1, .h1 { font-size: 5rem; }
-h2, .h2 { font-size: 4.2rem; }
-h3, .h3 { font-size: 3.6rem; }
-h4, .h4 { font-size: 3.0rem; }
-h5, .h5 { font-size: 2.4rem; }
-h6, .h6 { font-size: 1.5rem; }
+h1,
+.h1 { font-size: 5rem; }
+
+h2,
+.h2 { font-size: 4.2rem; }
+
+h3,
+.h3 { font-size: 3.6rem; }
+
+h4,
+.h4 { font-size: 3rem; }
+
+h5,
+.h5 { font-size: 2.4rem; }
+
+h6,
+.h6 { font-size: 1.5rem; }
 
 @include media.upToTabletPortrait {
-    h1, .h1 { font-size: 4.6rem; }
-    h2, .h2 { font-size: 3.8rem; }
-    h3, .h3 { font-size: 3.4rem; }
-    h4, .h4 { font-size: 3.0rem; }
-    h5, .h5 { font-size: 2.4rem; }
-    h6, .h6 { font-size: 1.7rem; }
+    h1,
+    .h1 { font-size: 4.6rem; }
+
+    h2,
+    .h2 { font-size: 3.8rem; }
+
+    h3,
+    .h3 { font-size: 3.4rem; }
+
+    h4,
+    .h4 { font-size: 3rem; }
+
+    h5,
+    .h5 { font-size: 2.4rem; }
+
+    h6,
+    .h6 { font-size: 1.7rem; }
 }
 
-p, ul li {
-    margin-top: 0;
+p,
+ul li {
     line-height: 1.45;
+    margin-top: 0;
 }
 
 a {
@@ -96,18 +124,18 @@ a {
 }
 
 hr {
-    margin-top: 2.5rem;
-    margin-bottom: 3.2rem;
     border-top: 1px solid $border-colour;
+    margin-bottom: 3.2rem;
+    margin-top: 2.5rem;
 }
 
 code {
+    background-color: lighten($background-color, 5%);
     // By default, <code> is an inline code block.
     // Add "multiline" class to support multiple lines.
     display: inline-block;
     margin: 0 3px;
     padding: 0 3px;
-    background-color: lighten($background-color, 5%);
 
     &.multiline {
         display: block;
@@ -120,19 +148,37 @@ code {
     &-left { text-align: left; }
     &-center { text-align: center; }
     &-right { text-align: right; }
-    &-justify-interword { text-align: justify; text-justify: inter-word; }
-    &-justify-intercharacter { text-align: justify; text-justify: inter-character; }
-    &-justify { text-align: justify; text-justify: auto; }
+
+    &-justify-interword {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+    &-justify-intercharacter {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+
+    &-justify {
+        text-align: justify;
+        text-justify: auto;
+    }
 }
 
 // Full width/height shorthands
-.element {
-    &-fullWidth { width: 100%; }
-    &-fullHeight { height: 100% }
-    &-fullSize {
-        @extend .element-fullWidth;
-        @extend .element-fullHeight;
-    }
+.element-fullWidth,
+%element-fullWidth {
+    width: 100%;
+}
+
+.element-fullHeight,
+%element-fullHeight {
+    height: 100%;
+}
+
+.element-fullSize {
+    @extend %element-fullWidth;
+    @extend %element-fullHeight;
 }
 
 // Element margins and paddings
@@ -188,21 +234,25 @@ code {
 
 @mixin grid--halves {
     @include grid;
+
     grid-template-columns: repeat(2, calc(100% / 2));
 }
 
 @mixin grid--thirds {
     @include grid;
+
     grid-template-columns: repeat(3, calc(100% / 3));
 }
 
 @mixin grid--quarters {
     @include grid;
+
     grid-template-columns: repeat(4, calc(100% / 4));
 }
 
 @mixin grid--sixths {
     @include grid;
+
     grid-template-columns: repeat(6, calc(100% / 6));
 }
 
@@ -218,12 +268,20 @@ code {
 
 // Output them once for @extend availability
 .grid--single { @include grid--single; }
+
 .grid--halves { @include grid--halves; }
+
 .grid--thirds { @include grid--thirds; }
+
 .grid--quarters { @include grid--quarters; }
+
 .grid--sixths { @include grid--sixths; }
-.grid__center-horizontal { @include grid__center-horizontal; }
-.grid__center-vertical { @include grid__center-vertical; }
+
+.grid__center-horizontal,
+%grid__center-horizontal { @include grid__center-horizontal; }
+
+.grid__center-vertical,
+%grid__center-vertical { @include grid__center-vertical; }
 
 ////
 /// CONTAINER (based on a grid, but horizontally padded)
@@ -233,15 +291,15 @@ code {
 ////
 
 .container {
-    justify-self: stretch;
     align-self: stretch;
+    justify-self: stretch;
 
     @at-root #{&}__child.center-horizontal {
-        @extend .grid__center-horizontal;
+        @extend %grid__center-horizontal;
     }
 
     @at-root #{&}__child.center-vertical {
-        @extend .grid__center-vertical;
+        @extend %grid__center-vertical;
     }
 
     @include media.onlyPhone {
@@ -279,40 +337,50 @@ code {
 /// FLEX
 ////
 
-.flex {
+.flex,
+%flex {
     display: flex;
+}
 
-    @at-root #{&}--row {
-        @extend .flex;
-        flex-direction: row;
-    }
-    @at-root #{&}--column {
-        @extend .flex;
-        flex-direction: column;
-    }
+.flex--row {
+    @extend %flex;
 
-    @at-root #{&}--justify-start {
-        justify-content: flex-start;
-    }
-    @at-root #{&}--justify-center {
-        justify-content: center;
-    }
-    @at-root #{&}--justify-end {
-        justify-content: flex-end;
-    }
+    flex-direction: row;
+}
 
-    @at-root #{&}--align-start {
-        align-items: flex-start;
-    }
-    @at-root #{&}--align-center {
-        align-items: center;
-    }
-    @at-root #{&}--align-end {
-        align-items: flex-end;
-    }
+.flex--column {
+    @extend %flex;
 
-    @at-root #{&}--center {
-        @extend .flex--justify-center;
-        @extend .flex--align-center;
-    }
+    flex-direction: column;
+}
+
+.flex--justify-start {
+    justify-content: flex-start;
+}
+
+.flex--justify-center,
+%flex--justify-center {
+    justify-content: center;
+}
+
+.flex--justify-end {
+    justify-content: flex-end;
+}
+
+.flex--align-start {
+    align-items: flex-start;
+}
+
+.flex--align-center,
+%flex--align-center {
+    align-items: center;
+}
+
+.flex--align-end {
+    align-items: flex-end;
+}
+
+.flex--center {
+    @extend %flex--justify-center;
+    @extend %flex--align-center;
 }

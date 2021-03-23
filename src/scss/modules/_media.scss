@@ -7,7 +7,7 @@
 /// Breakpoint sizes inspired by
 /// https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
 /// The include-media library is loaded with these breakpoints.
-$mediaBreakpoints: (
+$media-breakpoints: (
     "phone": 599px,
     "tablet-portrait": 600px,
     "tablet-landscape": 900px,
@@ -16,7 +16,7 @@ $mediaBreakpoints: (
 );
 
 @use "../vendor/include-media/include-media" as im with (
-    $breakpoints: $mediaBreakpoints
+    $breakpoints: $media-breakpoints
 );
 
 @forward "../vendor/include-media/include-media" as im-*;
@@ -43,7 +43,7 @@ $mediaBreakpoints: (
     @include im.media("<tablet-landscape") {
         @content;
     }
-};
+}
 
 ///
 /// Syntactic sugar for media query ">=tablet-portrait"
@@ -63,7 +63,7 @@ $mediaBreakpoints: (
     @include im.media("<desktop") {
         @content;
     }
-};
+}
 
 ///
 /// Syntactic sugar for media query ">=tablet-landscape"

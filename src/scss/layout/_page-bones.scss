@@ -6,7 +6,7 @@
 $demo-background-colour: darken(desaturate(vars.$colour-primary, 40%), 10%);
 
 .page--bones {
-    @include c.sizeRectangle(100%);
+    @include c.size-rectangle(100%);
 
     background-color: vars.$color-background-dark;
     color: vars.$colour-white;
@@ -28,47 +28,56 @@ $demo-background-colour: darken(desaturate(vars.$colour-primary, 40%), 10%);
         padding-left: 10px;
     }
 
-    #grid-demo1 {
-        @include c.sizeRectangle(400px, 300px);
-    }
-    #grid-demo2 {
-        @include c.sizeRectangle(600px, 300px);
-    }
-
-    #grid-demo1, #grid-demo2 {
-        span {
-            @include c.flexRowCenter(true, true);
-            font-variant: small-caps;
-            text-align: center;
-
-            &:nth-of-type(1) {
-                background-color: rgb(107, 62, 107);
-            }
-            &:nth-of-type(2) {
-                background-color: rgb(69, 62, 107);
-            }
-            &:nth-of-type(3) {
-                background-color: rgb(62, 89, 107);
-            }
-            &:nth-of-type(4) {
-                background-color: rgb(62, 107, 84);
-            }
-            &:nth-of-type(5) {
-                background-color: rgb(75, 107, 62);
-            }
-            &:nth-of-type(6) {
-                background-color: rgb(100, 107, 62);
-            }
-        }
-    }
-
     .demo-annotation {
         color: darken(bones.$text-colour, 40%);
         padding-top: 5px;
     }
+}
 
-    #flex-demo {
-        @include c.sizeRectangle(350px);
-        background-color: $demo-background-colour;
+#grid-demo1 {
+    @include c.size-rectangle(400px, 300px);
+}
+
+#grid-demo2 {
+    @include c.size-rectangle(600px, 300px);
+}
+
+#grid-demo1,
+#grid-demo2 {
+    span {
+        @include c.flex-row-center(true, true);
+
+        font-variant: small-caps;
+        text-align: center;
+
+        &:nth-of-type(1) {
+            background-color: rgb(107, 62, 107);
+        }
+
+        &:nth-of-type(2) {
+            background-color: rgb(69, 62, 107);
+        }
+
+        &:nth-of-type(3) {
+            background-color: rgb(62, 89, 107);
+        }
+
+        &:nth-of-type(4) {
+            background-color: rgb(62, 107, 84);
+        }
+
+        &:nth-of-type(5) {
+            background-color: rgb(75, 107, 62);
+        }
+
+        &:nth-of-type(6) {
+            background-color: rgb(100, 107, 62);
+        }
     }
+}
+
+#flex-demo {
+    @include c.size-rectangle(350px);
+
+    background-color: $demo-background-colour;
 }

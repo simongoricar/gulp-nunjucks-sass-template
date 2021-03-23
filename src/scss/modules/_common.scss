@@ -7,10 +7,12 @@
 /// Will unqote the argument if it is a string.
 /// @access private
 ///
-@function _unqoteIfString($var) {
+@function _unqote-if-string($var) {
     @if type-of($var) == string {
         @return unquote($var);
-    } @else {
+    }
+
+    @else {
         @return $var;
     }
 }
@@ -19,14 +21,15 @@
 /// Creates flex rules for centering.
 /// In general use flexRowCenter/flexColumnCenter mixins instead.
 ///
-@mixin _flexCenterRules($direction, $justifyContentCenter, $alignItemsCenter) {
+@mixin _flex-center-rules($direction, $justify-content-center, $align-items-center) {
     display: flex;
     flex-direction: unquote($direction);
 
-    @if $justifyContentCenter {
+    @if $justify-content-center {
         justify-content: center;
     }
-    @if $alignItemsCenter {
+
+    @if $align-items-center {
         align-items: center;
     }
 }
@@ -34,65 +37,69 @@
 ///
 /// Creates flex (row) rules for centering.
 ///
-@mixin flexRowCenter($horizontal: true, $vertical: true) {
-    @include _flexCenterRules("row", $horizontal, $vertical);
+@mixin flex-row-center($horizontal: true, $vertical: true) {
+    @include _flex-center-rules("row", $horizontal, $vertical);
 }
 
 ///
 /// Creates flex (column) rules for centering.
 ///
-@mixin flexColumnCenter($horizontal: true, $vertical: true) {
-    @include _flexCenterRules("column", $vertical, $horizontal);
+@mixin flex-column-center($horizontal: true, $vertical: true) {
+    @include _flex-center-rules("column", $vertical, $horizontal);
 }
 
 ///
 /// Generates width and height rules for a sizeRectangle.
 /// If only one argument is passed, both rules will be the same (a square).
 ///
-@mixin sizeRectangle($width, $height: $width) {
-    width: _unqoteIfString($width);
-    height: _unqoteIfString($height);
+@mixin size-rectangle($width, $height: $width) {
+    height: _unqote-if-string($height);
+    width: _unqote-if-string($width);
 }
 
 ///
 /// Generates top, right, bottom, left rules. Supports one, two, three or four arguments.
 /// Generally use relativePos/absolutePos/fixedPos/stickyPos mixins instead.
 ///
-@mixin _positioning($top: 0px, $right: $top, $bottom: $top, $left: $right) {
-    top: _unqoteIfString($top);
-    right: _unqoteIfString($right);
-    bottom: _unqoteIfString($bottom);
-    left: _unqoteIfString($left);
+@mixin _positioning($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    bottom: _unqote-if-string($bottom);
+    left: _unqote-if-string($left);
+    right: _unqote-if-string($right);
+    top: _unqote-if-string($top);
 }
 
 ///
 /// Generates a complete rule with "position: relative" and "top/right/bottom/left" rules.
 ///
-@mixin relativePos($top: 0px, $right: $top, $bottom: $top, $left: $right) {
+@mixin relative-pos($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    @include _positioning($top, $right, $bottom, $left);
+
     position: relative;
-    @include _positioning($top, $right, $bottom, $left);
 }
 
 ///
 /// Generates a complete rule with "position: absolute" and "top/right/bottom/left" rules.
 ///
-@mixin absolutePos($top: 0px, $right: $top, $bottom: $top, $left: $right) {
+@mixin absolute-pos($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    @include _positioning($top, $right, $bottom, $left);
+
     position: absolute;
-    @include _positioning($top, $right, $bottom, $left);
 }
 
 ///
 /// Generates a complete rule with "position: absolute" and "top/right/bottom/left" rules.
 ///
-@mixin fixedPos($top: 0px, $right: $top, $bottom: $top, $left: $right) {
+@mixin fixed-pos($top: 0, $right: $top, $bottom: $top, $left: $right) {
+    @include _positioning($top, $right, $bottom, $left);
+
     position: fixed;
-    @include _positioning($top, $right, $bottom, $left);
 }
 
 ///
 /// Generates a complete rule with "position: absolute" and "top/right/bottom/left" rules.
 ///
-@mixin stickyPos($top: 0px, $right: $top, $bottom: $top, $left: $right) {
-    position: sticky;
+@mixin sticky-pos($top: 0, $right: $top, $bottom: $top, $left: $right) {
     @include _positioning($top, $right, $bottom, $left);
+
+    position: sticky;
 }

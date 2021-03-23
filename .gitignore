@@ -18,6 +18,10 @@ node_modules
 # Output files
 dist
 
+# Cache
+.stylelintcache
+.eslintcache
+
 ## Platform-specific
 # OS X
 .DS_Store
