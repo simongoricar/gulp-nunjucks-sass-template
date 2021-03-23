@@ -2,6 +2,8 @@
 
 ![Gulp v4.0.2](https://img.shields.io/static/v1?logo=gulp&logoColor=white&label=gulp&message=v4.0.2&color=CF4647)
 ![Webpack v5.25.0](https://img.shields.io/static/v1?logo=webpack&logoColor=white&label=webpack&message=v5.25.0&color=8DD6F9)
+![Dart Sass v1.32.8](https://img.shields.io/static/v1?logo=Sass&logoColor=white&label=Sass&message=v1.32.8&color=CC6699)
+![TypeScript v4.2.3](https://img.shields.io/static/v1?logo=TypeScript&logoColor=white&label=TypeScript&message=v4.2.3&color=3178C6)
 
 ## Full list of features
 - *HTML*: [**Nunjucks**](https://mozilla.github.io/nunjucks/) template rendering *at build time*. Includes a basic template (`templates/base.njk`) to get you started.
@@ -61,4 +63,4 @@ To just build in production mode, execute `yarn run buildProduction` (or `buildD
 ### Linting
 Prefferably enable support for ESLint and Stylelint in your IDE, but to lint manually, use the scripts:
 - `lintTS` (or `lintTSFix` to automatically fix problems)
-- "lintSCSS"
+- `lintSCSS` (or `lintSCSSFix` to automatically fix problems)

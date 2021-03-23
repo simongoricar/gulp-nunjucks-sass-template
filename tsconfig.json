@@ -1,9 +1,7 @@
 {
   "include": [
     "src/**/*.ts",
-    "tasks/**/*.ts",
-    "*.ts",
-    "*.js"
+    "tasks/**/*.ts"
   ],
   "exclude": [
     "src/**/*.scss",
