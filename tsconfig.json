@@ -1,9 +1,12 @@
 {
   "include": [
-    "src/scripts/**/**.ts",
+    "src/**/*.ts",
     "tasks/**/*.ts",
     "*.ts",
     "*.js"
+  ],
+  "exclude": [
+    "src/**/*.scss",
   ],
   "compilerOptions": {
     "allowJs": true,
@@ -14,13 +17,19 @@
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    // Transformation is done using Babel
+    // Transformation is done using webpack and Babel
     "noEmit": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "lib": [
-        "ES2020",
-        "DOM"
+      "ES2020",
+      "DOM"
     ],
-    "resolveJsonModule": true
+    "baseUrl": ".",
+    "paths": {
+      "@": ["./src/*"],
+      "@SCSS": ["./src/scss/*"],
+      "@SCRIPTS": ["./src/scripts/*"]
+    }
   }
 }

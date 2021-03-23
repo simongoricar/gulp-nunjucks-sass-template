@@ -16,36 +16,21 @@ const webpackConfig: Configuration = {
         publicPath: "./",
     },
     target: "browserslist",
+    resolve: {
+        alias: {
+            "@": path.resolve(basePaths.srcDirBase),
+            "@SCSS": path.resolve(mainConfig.css.srcDir),
+            "@SCRIPTS": path.resolve(mainConfig.js.srcDir),
+        },
+    },
     module: {
         rules: [
-            //
-            // SHARING IMAGE PATHS
-            // Importing images in your TypeScsript will
-            // return the relative path (of the image in the build).
-            //
-            // Example: "import sampleImage from "../images/sampleimage.jpg";"
-            // "sampleImage" will contain "./assets/images/sampleimage.jpg"
-            //
-            {
-                test: /\.(jpg|jpeg|tiff|png|apng)/i,
-                use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: "[name].[ext]",
-                            // eslint-disable-next-line max-len
-                            outputPath: `${basePaths.outputAssetsDirName}/${basePaths.srcImagesDirName}`,
-                            emitFile: false,
-                        },
-                    },
-                ],
-            },
             //
             // SHARING SCSS VARIABLES
             // Importing SCSS files in your TypeScript will load the variables.
             // NOTE: Will not actually import SCSS into your project!!
             //
-            // Example: "import vars from '../scss/_vars.scss';"
+            // Example: "import vars from '@SCSS/_vars.scss'; " (@SCSS resolves to the scss directory)
             // "vars" will now be an object containing camelCased SCSS variables.
             //
             {
@@ -59,6 +44,9 @@ const webpackConfig: Configuration = {
             //
             // TypeScript is transpiled to JavaScript.
             // For options, modify babel.config.js in the root directory.
+            //
+            // To avoid huge relative paths, an alias "@SCRIPTS" is available (resolves to the scripts directory).
+            // Example: "import someModule from '@SCRIPTS/test.ts'; "
             //
             {
                 test: /\.(js|ts|jsx|tsx)/i,
