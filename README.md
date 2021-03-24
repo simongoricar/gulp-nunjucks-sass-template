@@ -76,31 +76,46 @@ src
 > [**Nunjucks**](https://mozilla.github.io/nunjucks/) is a powerful HTML templating engine built by Mozilla. The syntax is similar to (and inspired by) Python's jinja2.
 For more on templating, read [**Nunjucks' documentation**](https://mozilla.github.io/nunjucks/templating.html).
 
-Put your pages in `src/pages` and your templates in `src/templates`. In this project, a base template named `base.njk` is already set up. A few examples on using Nunjucks are available in `src/pages`.
+Put your pages in `src/pages` and your templates in `src/templates`. In this project, a base template named `base.njk` is already set up. 
+A few examples on using Nunjucks are available in `src/pages`.
 
-To add custom Nunjucks globals and filters, check out `tasks/configuration.ts`.
+To add custom Nunjucks globals and filters, check out `tasks/configuration.ts`. The `tags` global is automatically filled with useful values, read more below.
 
 ### 2.3. SCSS (CSS)
 > **SCSS** is a stylesheet language that compiles to CSS. This project uses the [Dart Sass](https://sass-lang.com) compiler.
 
-By default, there is a single entry point in ˙src/scss/main.scss` that imports a variety of rules and modules.
+By default, there is a single entry point in `src/scss/main.scss` that imports a variety of rules and modules.
 
-This template includes the following:
+This project's template includes the following:
 - [**normalize.css**](https://necolas.github.io/normalize.css/) for a consistent base across browsers
-- [**pure.css**](https://purecss.io/) as the style foundation
-- [**include-media**](https://eduardoboucas.github.io/include-media/) (Sass library for @media queries) as a handy tool for consistent @media queries. Breakpoints customized with help from [a bunch](https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/) [of](https://flaviocopes.com/css-breakpoints/) [articles](https://howto-wordpress-tips.com/responsive-breakpoints-tutorial/) [and frameworks](https://polypane.app/blog/css-breakpoints-used-by-popular-css-frameworks/) and packed into the `modules/_media.scss` module with shorthands for easy styling.
+- [**pure.css**](https://purecss.io/) as a style foundation
+- [**include-media**](https://eduardoboucas.github.io/include-media/) (Sass library for @media queries) - a handy tool for handling @media queries in SCSS. Breakpoints are customized with help from [a bunch](https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/) [of](https://flaviocopes.com/css-breakpoints/) [articles](https://howto-wordpress-tips.com/responsive-breakpoints-tutorial/) [and frameworks](https://polypane.app/blog/css-breakpoints-used-by-popular-css-frameworks/) and packed into the `modules/_media.scss` module with shorthands for easy styling.
 - **Bones**, a personal set of common rules compacted into mixins and CSS classes. Short documentation is available in `bones.njk`/`bones.html` and the source is available at `src/scss/vendor/bones`.
+- A variety of basic sizing, animation-related and other mixins, available in `src/scss/modules`.
+- `rem` units scaled to `10px` (`62.5%`, adjusted in `src/scss/base/_defaults.scss`).
 
-Each of these modules is located in `src/scss/vendor` and can be easily removed if you do not need them by deleting the relevant directory and removing the import in `main.scss`.
+The larger modules are located in `src/scss/vendor` and can be easily removed if you do not need them by deleting the relevant directory and removing the import in `main.scss`.
 
-The resulting CSS `<link>` tag is available as the variable `tags.css` (e.g. `{{ tags.css | safe }}` will output `<link href="assets/css/style.min.css" rel="stylesheet">`).
+The resulting CSS `<link>` tag to the styles is available in the variable `tags.css`.
+```nunjucks
+{{ tags.css | safe }}
+```
+This will output `<link href="assets/css/style.min.css" rel="stylesheet">`. 
+The `safe` filter is required as Nunjucks would otherwise escape HTML content.
 
 ### 2.4. TypeScript
 > [**TypeScript**](https://www.typescriptlang.org/) is an open-source language which builds on JavaScript by adding static type definitions.
 
 All `*.ts` code in `src/scripts` goes through webpack and Babel (with `preset-env` and `preset-typescript`). To facilitate splitting your code, multiple entry points ("multiple scripts") can be set up in `tasks/configuration.ts`. 
 
-The resulting `<script>` tags (one for each entry point) will be available under `tags.scripts` (e.g. with an entry point you named `index`: `{{ tags.scripts.index | safe }}`` will output `<script src="assets/js/index.js"></script>`).
+The resulting `<script>` tags (one for each entry point) will be available under `tags.scripts`. 
+
+For example: with an entry point named `index`, you can use the following variable in your page:
+```nunjucks
+{{ tags.scripts.index | safe }}
+```
+This will output `<script src="assets/js/index.js"></script>`. 
+The `safe` filter is required as Nunjucks would otherwise escape HTML content.
 
 Another useful feature: importing SCSS variables into your TypeScript is easy! Webpack is already configured, simply import the `.scss` file, and you're done (see `src/scripts/index.ts` for an example)! This will not impact the styles (no additional file is emitted), but will import the variables you might want to use. Side note: instead of a relative path, the `@SCSS` alias is available (as shown in the example).
 
