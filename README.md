@@ -12,27 +12,27 @@
 
 ##### You're looking at v2.0. If you're searching for v1.2.0, go to the [relevant tag](https://github.com/DefaultSimon/gulp-nunjucks-sass-template/tree/v1.2.0).
 
-## Full list of features
+## Features
 - *HTML*: [**Nunjucks**](https://mozilla.github.io/nunjucks/) template engine. Renders *at build time* for static websites. Includes a basic template `templates/base.njk` to get you started and minification on production builds.
 - *CSS*: [**SCSS**](https://sass-lang.com/) (and SASS) support. Includes minification on production builds and autoprefixing via [Autoprefixer](https://github.com/postcss/autoprefixer).
 - *JS*: [**TypeScript**](https://www.typescriptlang.org/) support (via webpack and Babel). Multiple entry points are supported (e.g. a script for each page; see `tasks/configuration.ts`).
 - *IMAGES and ASSETS*: Automatically copy your images and other assets into your build.
 - *DEVELOPMENT*: [**Browsersync**](https://www.browsersync.io/) support (real-time browser updates when you're developing).
-- *LINTING*: [**eslint**](https://eslint.org/) for TypeScript, [**stylelint**](https://stylelint.io) for SCSS with relevant scripts prepared.
+- *LINTING*: [**eslint**](https://eslint.org/) for TypeScript, [**stylelint**](https://stylelint.io) for SCSS with configuration files set up and relevant scripts prepared.
 - **Easy customization** via options in `tasks/configuration.ts` and modular tasks in `tasks`
 
 ---
 
 ### 1. Installation
-To get started: *fork*, *clone* or *download* the repository.
+**To get started *fork*, *clone* or *download* the repository.**
 
 #### Cloning or downloading
-In order to clone this repository, run the command beelow or use the download button to download a zipped version.
+In order to clone this repository, run the command below or use the download button.
 ```
 git clone https://github.com/DefaultSimon/gulp-nunjucks-sass-template.git
 ```
  
-If you intend to push changes to your site to your own repository though, you'll have to update the remote in your clone (which forking already does for you). For further help, see [this help article](https://help.github.com/en/articles/cloning-a-repository).
+If you intend to push changes to your site to your own repository though, you'll have to update the remote in your clone (which forking already does for you). For further help, see [this article](https://help.github.com/en/articles/cloning-a-repository).
 
 #### Forking
 Forking makes an online copy of this repository which is then available under your repositories. Click the *Fork* button or see help [here](https://help.github.com/en/articles/fork-a-repo).
@@ -41,7 +41,7 @@ Forking makes an online copy of this repository which is then available under yo
 This projects uses [Yarn 2](https://yarnpkg.com/en/) as the package manager.  Install if needed and run `yarn install` in the base directory, and you're done. 
 
 Familiarize yourself with the template by looking at the documentation and the relevant files.
-When you've looked around a bit you can, if needs arise, start to customize `tasks/configuration.ts` and even the individual tasks.
+When you've looked around a bit feel free to, if needs arise, start to customize `tasks/configuration.ts` and even the individual tasks.
 
 ### 2.1. Structure
 The file structure is as follows:
@@ -73,7 +73,7 @@ src
 ```
 
 ### 2.2. Nunjucks (HTML)
-[**Nunjucks**](https://mozilla.github.io/nunjucks/) is a powerful HTML templating engine built by Mozilla. The syntax is similar to (and inspired by) Python's jinja2.
+> [**Nunjucks**](https://mozilla.github.io/nunjucks/) is a powerful HTML templating engine built by Mozilla. The syntax is similar to (and inspired by) Python's jinja2.
 For more on templating, read [**Nunjucks' documentation**](https://mozilla.github.io/nunjucks/templating.html).
 
 Put your pages in `src/pages` and your templates in `src/templates`. In this project, a base template named `base.njk` is already set up. A few examples on using Nunjucks are available in `src/pages`.
@@ -81,7 +81,8 @@ Put your pages in `src/pages` and your templates in `src/templates`. In this pro
 To add custom Nunjucks globals and filters, check out `tasks/configuration.ts`.
 
 ### 2.3. SCSS (CSS)
-**SCSS** is a stylesheet language that compiles to CSS using the [(Dart) Sass](https://sass-lang.com) project.
+> **SCSS** is a stylesheet language that compiles to CSS. This project uses the [Dart Sass](https://sass-lang.com) compiler.
+
 By default, there is a single entry point in ˙src/scss/main.scss` that imports a variety of rules and modules.
 
 This template includes the following:
@@ -95,7 +96,7 @@ Each of these modules is located in `src/scss/vendor` and can be easily removed 
 The resulting CSS `<link>` tag is available as the variable `tags.css` (e.g. `{{ tags.css | safe }}` will output `<link href="assets/css/style.min.css" rel="stylesheet">`).
 
 ### 2.4. TypeScript
-[**TypeScript**](https://www.typescriptlang.org/) is an open-source language which builds on JavaScript by adding static type definitions.
+> [**TypeScript**](https://www.typescriptlang.org/) is an open-source language which builds on JavaScript by adding static type definitions.
 
 All `*.ts` code in `src/scripts` goes through webpack and Babel (with `preset-env` and `preset-typescript`). To facilitate splitting your code, multiple entry points ("multiple scripts") can be set up in `tasks/configuration.ts`. 
 
