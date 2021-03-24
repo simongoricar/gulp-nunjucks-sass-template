@@ -10,9 +10,9 @@
 $media-breakpoints: (
     "phone": 599px,
     "tablet-portrait": 600px,
-    "tablet-landscape": 900px,
-    "desktop": 1200px,
-    "big-desktop": 1800px
+    "tablet-landscape": 1000px,
+    "laptop": 1200px,
+    "desktop": 1800px
 );
 
 @use "../vendor/include-media/include-media" as im with (
@@ -56,11 +56,11 @@ $media-breakpoints: (
 }
 
 ///
-/// Syntactic sugar for media query "<desktop"
+/// Syntactic sugar for media query "<laptop"
 /// @content @media rule content
 ///
 @mixin upToTabletLandscape {
-    @include im.media("<desktop") {
+    @include im.media("<laptop") {
         @content;
     }
 }
@@ -76,30 +76,30 @@ $media-breakpoints: (
 }
 
 ///
-/// Syntactic sugar for media query "<big-desktop"
+/// Syntactic sugar for media query "<desktop"
 /// @content @media rule content
 ///
-@mixin upToDesktop {
-    @include im.media("<big-desktop") {
+@mixin upToLaptop {
+    @include im.media("<desktop") {
         @content;
     }
 }
 
+///
+/// Syntactic sugar for media query ">=laptop"
+/// @content @media rule content
+///
+@mixin laptopUp {
+    @include im.media(">=laptop") {
+        @content;
+    }
+}
 ///
 /// Syntactic sugar for media query ">=desktop"
 /// @content @media rule content
 ///
 @mixin desktopUp {
     @include im.media(">=desktop") {
-        @content;
-    }
-}
-///
-/// Syntactic sugar for media query ">=big-desktop"
-/// @content @media rule content
-///
-@mixin bigDesktopUp {
-    @include im.media(">=big-desktop") {
         @content;
     }
 }
@@ -112,7 +112,7 @@ $media-breakpoints: (
 /// Syntactic sugar for media query "prefers-color-scheme: dark"
 /// @content @media rule content
 ///
-@mixin withDarkMode {
+@mixin onDarkMode {
     @media (prefers-color-scheme: dark) {
         @content;
     }
