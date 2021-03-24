@@ -78,6 +78,8 @@ For more on templating, read [**Nunjucks' documentation**](https://mozilla.githu
 
 Put your pages in `src/pages` and your templates in `src/templates`. In this project, a base template named `base.njk` is already set up. A few examples on using Nunjucks are available in `src/pages`.
 
+To add custom Nunjucks globals and filters, check out `tasks/configuration.ts`.
+
 ### 2.3. SCSS (CSS)
 **SCSS** is a stylesheet language that compiles to CSS using the [(Dart) Sass](https://sass-lang.com) project.
 By default, there is a single entry point in ˙src/scss/main.scss` that imports a variety of rules and modules.
@@ -90,14 +92,22 @@ This template includes the following:
 
 Each of these modules is located in `src/scss/vendor` and can be easily removed if you do not need them by deleting the relevant directory and removing the import in `main.scss`.
 
+The resulting CSS `<link>` tag is available as the variable `tags.css` (e.g. `{{ tags.css | safe }}` will output `<link href="assets/css/style.min.css" rel="stylesheet">`).
 
-### 2.3. Development
+### 2.4. TypeScript
+[**TypeScript**](https://www.typescriptlang.org/) is an open-source language which builds on JavaScript by adding static type definitions.
+
+All `*.ts` code in `src/scripts` goes through webpack and Babel (with `preset-env` and `preset-typescript`). To facilitate splitting your code, multiple entry points ("multiple scripts") can be set up in `tasks/configuration.ts`. 
+
+The resulting `<script>` tags (one for each entry point) will be available under `tags.scripts` (e.g. with an entry point you named `index`: `{{ tags.scripts.index | safe }}`` will output `<script src="assets/js/index.js"></script>`).
+
+### 2.5. Development
 **To start developing, execute `yarn run dev` in the console.** This will build a development version of the project, open the browser and watch for changes, updating them in real-time in the browser.
 
 To just build in production mode (enabling minified scripts, webpack's production mode and such), execute `yarn run buildProduction` (or `buildDev` for a one-time dev build). For other single tasks, check out `tasks/index.ts`.
 
 
-### 2.4. Linting
+### 2.6. Linting
 Linting will check your code against a set of TypeScript and SCSS rules. The rules can be adjusted in `.eslintrc.js` and `.stylelintrc.json`.
 
 To use linters, prefferably enable support for ESLint and Stylelint in your IDE, or run the following scripts to lint manually:
