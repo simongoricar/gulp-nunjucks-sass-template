@@ -13,12 +13,12 @@
 ##### You're looking at v2.0. If you're searching for v1.2.0, go to the [relevant tag](https://github.com/DefaultSimon/gulp-nunjucks-sass-template/tree/v1.2.0).
 
 ## Full list of features
-- *HTML*: [**Nunjucks**](https://mozilla.github.io/nunjucks/) template engine. Renders *at build time* for static websites. Includes a basic template (`templates/base.njk`) to get you started and minification on production builds.
+- *HTML*: [**Nunjucks**](https://mozilla.github.io/nunjucks/) template engine. Renders *at build time* for static websites. Includes a basic template `templates/base.njk` to get you started and minification on production builds.
 - *CSS*: [**SCSS**](https://sass-lang.com/) (and SASS) support. Includes minification on production builds and autoprefixing via [Autoprefixer](https://github.com/postcss/autoprefixer).
 - *JS*: [**TypeScript**](https://www.typescriptlang.org/) support (via webpack and Babel). Multiple entry points are supported (e.g. a script for each page; see `tasks/configuration.ts`).
 - *IMAGES and ASSETS*: Automatically copy your images and other assets into your build.
 - *DEVELOPMENT*: [**Browsersync**](https://www.browsersync.io/) support (real-time browser updates when you're developing).
-- *LINTING*: [**eslint**](https://eslint.org/) for TypeScript, [**stylelint**](https://stylelint.io) for SCSS with relevant scripts set up
+- *LINTING*: [**eslint**](https://eslint.org/) for TypeScript, [**stylelint**](https://stylelint.io) for SCSS with relevant scripts prepared.
 - **Easy customization** via options in `tasks/configuration.ts` and modular tasks in `tasks`
 
 ---
@@ -26,7 +26,7 @@
 ### 1. Installation
 To get started: *fork*, *clone* or *download* the repository.
 
-##### Cloning or downloading
+#### Cloning or downloading
 In order to clone this repository, run the command beelow or use the download button to download a zipped version.
 ```
 git clone https://github.com/DefaultSimon/gulp-nunjucks-sass-template.git
@@ -34,7 +34,7 @@ git clone https://github.com/DefaultSimon/gulp-nunjucks-sass-template.git
  
 If you intend to push changes to your site to your own repository though, you'll have to update the remote in your clone (which forking already does for you). For further help, see [this help article](https://help.github.com/en/articles/cloning-a-repository).
 
-##### Forking
+#### Forking
 Forking makes an online copy of this repository which is then available under your repositories. Click the *Fork* button or see help [here](https://help.github.com/en/articles/fork-a-repo).
 
 ### 2. Usage
@@ -50,6 +50,7 @@ The file structure is as follows:
 src
 - pages
   > your Nunjucks pages (.njk) here
+  > the pages will be compiled to HTML and copied to "dist"
 
 - templates
   > Nunjucks templates here (already includes one: base.njk)
@@ -57,16 +58,17 @@ src
   
 - scss
   > SCSS files (main.scss is the entry point and should import other files)
+  > normalize.css, pure.css, include-media and Bones are available.
 
 - scripts
-  > This project supports multiple completely separate entry points!
-  > see tasks/configuration.ts to see an example and set them up
+  > This project supports multiple entry points!
+  > see tasks/configuration.ts to see an example on how to set them up
 
 - images
-  > images are copied
+  > images are copied into "dist/assets/images"
 
 - other
-  > *any* files are recursively copied to the 'assets' directory
+  > *any* files are recursively copied to the "dist/assets" directory
   > for cases where you want some custom assets in your build
 ```
 
@@ -84,9 +86,9 @@ This template includes the following:
 - [**normalize.css**](https://necolas.github.io/normalize.css/) for a consistent base across browsers
 - [**pure.css**](https://purecss.io/) as the style foundation
 - [**include-media**](https://eduardoboucas.github.io/include-media/) (Sass library for @media queries) as a handy tool for consistent @media queries. Breakpoints customized with help from [a bunch](https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/) [of](https://flaviocopes.com/css-breakpoints/) [articles](https://howto-wordpress-tips.com/responsive-breakpoints-tutorial/) [and frameworks](https://polypane.app/blog/css-breakpoints-used-by-popular-css-frameworks/) and packed into the `modules/_media.scss` module with shorthands for easy styling.
-- **Bones**, a small set of common rules compacted into mixins and CSS classes. Short documentation is available in `bones.njk`/`bones.html` and the source is available at `src/scss/vendor/bones`.
+- **Bones**, a personal set of common rules compacted into mixins and CSS classes. Short documentation is available in `bones.njk`/`bones.html` and the source is available at `src/scss/vendor/bones`.
 
-Each of these modules is located in `src/scss/vendor` and can be easily removed by deleting its directory and removing the import in `main.scss`.
+Each of these modules is located in `src/scss/vendor` and can be easily removed if you do not need them by deleting the relevant directory and removing the import in `main.scss`.
 
 
 ### 2.3. Development
