@@ -101,6 +101,8 @@ All `*.ts` code in `src/scripts` goes through webpack and Babel (with `preset-en
 
 The resulting `<script>` tags (one for each entry point) will be available under `tags.scripts` (e.g. with an entry point you named `index`: `{{ tags.scripts.index | safe }}`` will output `<script src="assets/js/index.js"></script>`).
 
+Another useful feature: importing SCSS variables into your TypeScript is easy! Webpack is already configured, simply import the `.scss` file, and you're done (see `src/scripts/index.ts` for an example)! This will not impact the styles (no additional file is emitted), but will import the variables you might want to use. Side note: instead of a relative path, the `@SCSS` alias is available (as shown in the example).
+
 ### 2.5. Development
 **To start developing, execute `yarn run dev` in the console.** This will build a development version of the project, open the browser and watch for changes, updating them in real-time in the browser.
 
