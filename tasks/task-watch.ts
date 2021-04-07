@@ -2,7 +2,6 @@
  * Gulp task: Other assets
  */
 import path from "path";
-import { watch as gulpWatch } from "gulp";
 import { AsyncTask } from "async-done";
 
 import taskCss from "./task-css";
@@ -11,9 +10,10 @@ import taskCopyOtherAssets from "./task-other-assets";
 import taskImages from "./task-images";
 
 import { mainConfig } from "./configuration";
+import watcher from "./watcher";
 
 function watchCss(): ReturnType<AsyncTask> {
-    return gulpWatch(
+    return watcher(
         [
             "**/*.{css,scss,sass}",
         ],
@@ -25,7 +25,7 @@ function watchCss(): ReturnType<AsyncTask> {
 }
 
 function watchHtml(): ReturnType<AsyncTask> {
-    return gulpWatch(
+    return watcher(
         [
             "**/*.njk",
         ],
@@ -37,7 +37,7 @@ function watchHtml(): ReturnType<AsyncTask> {
 }
 
 function watchImages(): ReturnType<AsyncTask> {
-    return gulpWatch(
+    return watcher(
         [
             "**/*.{png,gif,jpg,bmp,tiff,jpeg,webp}",
         ],
@@ -49,7 +49,7 @@ function watchImages(): ReturnType<AsyncTask> {
 }
 
 function watchOtherAssets(): ReturnType<AsyncTask> {
-    return gulpWatch(
+    return watcher(
         [
             "**/*",
         ],
@@ -66,7 +66,7 @@ function taskWarnConfigChanges(): void {
 }
 
 function watchAndWarnConfigChanges(): ReturnType<AsyncTask> {
-    return gulpWatch(
+    return watcher(
         [
             "*.ts",
         ],
