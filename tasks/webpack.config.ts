@@ -16,6 +16,10 @@ const webpackConfig: Configuration = {
         publicPath: "./",
     },
     target: "browserslist",
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 100,
+    },
     resolve: {
         alias: {
             "@": path.resolve(basePaths.srcDirBase),

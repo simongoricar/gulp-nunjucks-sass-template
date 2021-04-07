@@ -11,7 +11,7 @@ import taskCopyOtherAssets from "./task-other-assets";
 import taskImages from "./task-images";
 import taskClean from "./task-clean";
 import {
-    watchCss, watchHtml, watchImages, watchOtherAssets, watchScripts,
+    watchCss, watchHtml, watchImages, watchOtherAssets,
     watchAndWarnConfigChanges,
 } from "./task-watch";
 import { browserSyncInit } from "./task-browsersync";
@@ -29,8 +29,7 @@ export const build = gulp.series(
 );
 export const watch = gulp.parallel(
     watchCss, watchHtml, watchImages,
-    watchOtherAssets, watchScripts,
-    watchAndWarnConfigChanges,
+    watchOtherAssets, watchAndWarnConfigChanges,
 );
 
 // noinspection JSUnusedGlobalSymbols

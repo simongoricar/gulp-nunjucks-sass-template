@@ -5,7 +5,6 @@ import path from "path";
 import { watch as gulpWatch } from "gulp";
 import { AsyncTask } from "async-done";
 
-import taskScripts from "./task-scripts";
 import taskCss from "./task-css";
 import taskHtml from "./task-html";
 import taskCopyOtherAssets from "./task-other-assets";
@@ -61,18 +60,6 @@ function watchOtherAssets(): ReturnType<AsyncTask> {
     );
 }
 
-function watchScripts(): ReturnType<AsyncTask> {
-    return gulpWatch(
-        [
-            "**/*.{js,ts}",
-        ],
-        {
-            cwd: mainConfig.js.srcDir,
-        },
-        taskScripts,
-    );
-}
-
 function taskWarnConfigChanges(): void {
     console.warn("WARNING: Some external configuration file was changed. "
         + "Please keep in mind a full reload is needed to load changes.");
@@ -91,6 +78,6 @@ function watchAndWarnConfigChanges(): ReturnType<AsyncTask> {
 }
 
 export {
-    watchCss, watchHtml, watchImages, watchOtherAssets, watchScripts,
+    watchCss, watchHtml, watchImages, watchOtherAssets,
     taskWarnConfigChanges, watchAndWarnConfigChanges,
 };
