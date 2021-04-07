@@ -3,7 +3,7 @@
   "title": "A Gulp 4 template including SCSS, Nunjucks, TypeScript (via webpack) and more",
   "author": "Simon Goričar",
   "url": "https://github.com/DefaultSimon",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
