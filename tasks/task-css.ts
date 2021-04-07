@@ -1,7 +1,7 @@
 /**
  * Gulp task: SCSS -> CSS
  */
-import gulpDartSass from "gulp-dart-sass";
+import { sass as gulpDartSass } from "@mr-hope/gulp-sass";
 import Fiber from "fibers";
 import gulpAutoprefixer from "gulp-autoprefixer";
 import gulpSourcemaps from "gulp-sourcemaps";

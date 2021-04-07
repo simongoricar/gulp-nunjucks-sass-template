@@ -1252,6 +1252,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mr-hope/gulp-sass@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@mr-hope/gulp-sass@npm:2.0.0"
+  dependencies:
+    "@types/lodash": ^4.14.168
+    "@types/node": ^14.14.31
+    "@types/sass": ^1.16.0
+    chalk: ^4.1.0
+    lodash: ^4.17.21
+    plugin-error: ^1.0.1
+    replace-ext: ^2.0.0
+    sass: ^1.32.8
+    strip-ansi: ^6.0.0
+    vinyl-sourcemaps-apply: ^0.2.1
+  checksum: 596ece6ed862dade5b7a43b722290b63cd0715c449c7726f5cd463971d851e9878881f5993c3bf63798e3f9e3e933909a349f5f5475d08a19c9f2c0aaa1c3ffa
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.4":
   version: 2.1.4
   resolution: "@nodelib/fs.scandir@npm:2.1.4"
@@ -1434,15 +1452,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/gulp-dart-sass@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@types/gulp-dart-sass@npm:1.0.0"
-  dependencies:
-    "@types/sass": "*"
-  checksum: e5591a6d495ed0653d4916153fcd012ea7b517fe415fedee89d887c5d4b3b58149f5f864ffa04a851bfad0f297900fefa198ac5349e98d927273c1354e2b82ae
-  languageName: node
-  linkType: hard
-
 "@types/gulp-rename@npm:^2.0.0":
   version: 2.0.0
   resolution: "@types/gulp-rename@npm:2.0.0"
@@ -1485,6 +1494,13 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 66e9ac0143ec521522c7bb670301e9836ee886207eeed1aab6d4854a1b19b404ab3a54cd8d449f9b1f13acc357f540be96f8ac2d1e86e301eab52ae0f9a4066f
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.168":
+  version: 4.14.168
+  resolution: "@types/lodash@npm:4.14.168"
+  checksum: 9a4e25f89fc035b9f0388f1f7be85e5eff49f9e6db0d93432c9a89fce0916f8a89db4e8290415f7ea02de6b00d3573826378dcb655b7b2d20530a6e8d6dd6fd0
   languageName: node
   linkType: hard
 
@@ -1540,6 +1556,13 @@ __metadata:
   version: 14.14.34
   resolution: "@types/node@npm:14.14.34"
   checksum: 74db0d80ad997c3ca2597abe1c63c85e87c32e06b4e8c8392a24a11ad00a4567b293a72bbdf49ace201150b420a943609181771cab034cef10fe65272d452718
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^14.14.31":
+  version: 14.14.37
+  resolution: "@types/node@npm:14.14.37"
+  checksum: 5e2d9baf7594ebacaf016716515f30de0765169412787f981481c2fb8b468923149bb9e2e3219ee672399811672ceddc339a7372a61cf15bc656836a5494d991
   languageName: node
   linkType: hard
 
@@ -3020,7 +3043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^2.0.0, chalk@npm:^2.3.0, chalk@npm:^2.4.2":
+"chalk@npm:^2.0.0, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -5423,22 +5446,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"gulp-dart-sass@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "gulp-dart-sass@npm:1.0.2"
-  dependencies:
-    chalk: ^2.3.0
-    lodash.clonedeep: ^4.3.2
-    plugin-error: ^1.0.1
-    replace-ext: ^1.0.0
-    sass: ^1.26.3
-    strip-ansi: ^4.0.0
-    through2: ^2.0.0
-    vinyl-sourcemaps-apply: ^0.2.0
-  checksum: f9d9244232080de545c4c18e8c1b9d57d38ff79feab2e4054c7e66dc80fa75f2b1d2140e921b31287310da597902202037784a684a2cdd6a88bf59ad48db183f
-  languageName: node
-  linkType: hard
-
 "gulp-htmlmin@npm:^5.0.1":
   version: 5.0.1
   resolution: "gulp-htmlmin@npm:5.0.1"
@@ -5471,12 +5478,12 @@ fsevents@~2.3.1:
     "@babel/preset-env": ^7.13.10
     "@babel/preset-typescript": ^7.13.0
     "@babel/register": ^7.13.8
+    "@mr-hope/gulp-sass": ^2.0.0
     "@types/babel__core": ^7.1.12
     "@types/browser-sync": ^2.26.1
     "@types/fibers": ^3.1.0
     "@types/gulp": ^4.0.8
     "@types/gulp-autoprefixer": ^0.0.32
-    "@types/gulp-dart-sass": ^1.0.0
     "@types/gulp-rename": ^2.0.0
     "@types/gulp-sourcemaps": ^0.0.34
     "@types/nunjucks": ^3.1.4
@@ -5501,7 +5508,6 @@ fsevents@~2.3.1:
     file-loader: ^6.2.0
     gulp: ^4.0.2
     gulp-autoprefixer: ^7.0.1
-    gulp-dart-sass: ^1.0.2
     gulp-htmlmin: ^5.0.1
     gulp-nunjucks-render: ^2.2.3
     gulp-rename: ^2.0.0
@@ -6877,13 +6883,6 @@ fsevents@~2.3.1:
   version: 4.3.0
   resolution: "lodash.camelcase@npm:4.3.0"
   checksum: 3cb674ed3b37bb698f2ec5a1c3f607d157279f3015877132e8be5c22cf8048988cb9bf1e61c90dbefea3895a459c095773cc266a5b1a9f4202bcd062b3983e37
-  languageName: node
-  linkType: hard
-
-"lodash.clonedeep@npm:^4.3.2":
-  version: 4.5.0
-  resolution: "lodash.clonedeep@npm:4.5.0"
-  checksum: 41e2fe4c57c56a66a4775a6ddeebe9272f0ce4d257d97b3cb8724a9b01eeec9b09ce7e8603d6926baf5f48c287d988f0de4bf5aa244ea86b1f22c1e6f203cc27
   languageName: node
   linkType: hard
 
@@ -8886,6 +8885,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"replace-ext@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "replace-ext@npm:2.0.0"
+  checksum: 24d9ce678b8040f9992cf5fb199b885600ec73a8dc27e7ae9bc6177305d2811494842c81773fe9b2ad29d912728aaa9ffdbb7f6b6549218845c69f93a65d6176
+  languageName: node
+  linkType: hard
+
 "replace-homedir@npm:^1.0.0":
   version: 1.0.0
   resolution: "replace-homedir@npm:1.0.0"
@@ -9169,7 +9175,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.26.3, sass@npm:^1.32.8":
+"sass@npm:^1.32.8":
   version: 1.32.8
   resolution: "sass@npm:1.32.8"
   dependencies:
@@ -10889,7 +10895,7 @@ typescript@^4.2.3:
   languageName: node
   linkType: hard
 
-"vinyl-sourcemaps-apply@npm:^0.2.0, vinyl-sourcemaps-apply@npm:^0.2.1":
+"vinyl-sourcemaps-apply@npm:^0.2.1":
   version: 0.2.1
   resolution: "vinyl-sourcemaps-apply@npm:0.2.1"
   dependencies:
