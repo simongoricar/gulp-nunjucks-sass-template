@@ -2,22 +2,38 @@
  * Because gulp.watch uses glob-watcher, which still uses chokidar v2,
  * I've rewritten the functionality I need from that library with chokidar v3.
  *
- * TODO when glob-watcher is updated to chokidar v3, remove this.
+ * TODO remove this when glob-watcher is updated to chokidar v3
  */
 import chokidar, { WatchOptions } from "chokidar";
 import { parallel, TaskFunction } from "gulp";
 import { EventEmitter } from "events";
 import justDebounce from "just-debounce";
 import asyncDone, { AsyncTask } from "async-done";
+import fs from "fs";
+import { mainConfig } from "./configuration";
 
 const chokidarEvents = ["add", "change", "unlink"];
+const defaultOptions: WatchOptions = {
+    ignoreInitial: true,
+};
 
 function watchGlobs(
     globs: string[], chokidarOptions: WatchOptions, callback: TaskFunction,
-): EventEmitter {
+): EventEmitter | null {
+    if (chokidarOptions.cwd) {
+        if (!fs.existsSync(chokidarOptions.cwd)) {
+            console.warn(
+                `[watcher] Directory "${
+                    chokidarOptions.cwd
+                }" does not exist, not watching.`,
+            );
+            return null;
+        }
+    }
+
     const watcher = chokidar.watch(
         globs,
-        chokidarOptions || {},
+        Object.assign(defaultOptions, chokidarOptions),
     );
 
     // If a change event fires while we are running a task
