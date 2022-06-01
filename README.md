@@ -17,10 +17,14 @@
     <img alt="TypeScript" src="https://img.shields.io/github/package-json/dependency-version/DefaultSimon/gulp-nunjucks-sass-template/dev/typescript?color=3178C6&label=TypeScript&logo=typescript&logoColor=white&style=flat-square">
 </div>
 
+<div style="margin-top: 50px"></div>
 <p align="center">
 
-**DEPRECATION**: This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template). The technologies are very similar (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed.
+**DEPRECATION**: **This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template)**. The technologies are very similar (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed.
 </p>
+<div style="margin-top: 100px"></div>
+
+---
 
 ## Features
 - *HTML*: [**Nunjucks**](https://mozilla.github.io/nunjucks/) template engine. Renders *at build time* for static websites. Includes a basic template `templates/base.njk` to get you started and minification on production builds.
