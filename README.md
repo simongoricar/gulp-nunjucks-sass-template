@@ -19,7 +19,7 @@
 
 <p align="center">
 
-**DEPRECATION**: **This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template)**. The front-end technologies are pretty much the same (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed and maintainability.
+**DEPRECATION**: **This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template)**. The front-end technologies are pretty much the same (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed and maintainability, as this one combined Gulp and Webpack in what I considered to be a rather dirty approach.
 </p>
 
 ---
