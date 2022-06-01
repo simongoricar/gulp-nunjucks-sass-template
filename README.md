@@ -1,6 +1,6 @@
 <div align="center">
     <div align="center">
-        <h1>A customizable <a href="https://gulpjs.com/">Gulp 4</a> template</h1>
+        <h1><del>A customizable <a href="https://gulpjs.com/">Gulp 4</a> template</del></h1>
     </div>
     <div align="center">
         <h5>for static sites</h5>
@@ -17,12 +17,10 @@
     <img alt="TypeScript" src="https://img.shields.io/github/package-json/dependency-version/DefaultSimon/gulp-nunjucks-sass-template/dev/typescript?color=3178C6&label=TypeScript&logo=typescript&logoColor=white&style=flat-square">
 </div>
 
-<div style="margin-top: 50px"></div>
 <p align="center">
 
-**DEPRECATION**: **This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template)**. The technologies are very similar (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed.
+**DEPRECATION**: **This template should work, but is not fully up-to-date, which is why I've moved on and built a new template over at [webpack-static-site-template](https://github.com/DefaultSimon/webpack-static-site-template)**. The front-end technologies are pretty much the same (Nunjucks, SCSS, Typescript), but the build tool is now just Webpack, which helps with the speed and maintainability.
 </p>
-<div style="margin-top: 100px"></div>
 
 ---
 
